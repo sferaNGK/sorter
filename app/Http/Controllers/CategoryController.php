@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Word;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -36,6 +37,15 @@ class CategoryController extends Controller
         $category = Category::query()->where('id',$request->id)->first();
         $category->delete();
         return redirect()->back();
+    }
+
+    public function gameCategoryGet(){
+        $category = Category::all()->random(2);
+        $words = [];
+        foreach($category as $cat){
+            array_push($words,Word::with('Category')->where('category_id',$cat->id)->get());
+        }
+        return response()->json($words);
     }
     /**
      * Display a listing of the resource.
