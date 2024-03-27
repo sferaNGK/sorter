@@ -39,6 +39,40 @@ class WordController extends Controller
         $word->delete();
         return redirect()->back();
     }
+
+    public function checkGame(Request $request){
+        // Request arr
+        $request->title1 = explode(',', $request->title1);
+        $request->title2 = explode(',', $request->title2);
+
+        // database arr
+        $arr1=[];
+        $arr2=[];
+
+       $words = Word::with('Category')->where('category_id',$request->id)->get();
+       $words1 = Word::with('Category')->where('category_id',$request->id2)->get();
+       foreach($words as $word){
+            array_push($arr1, $word->title);
+        }
+       foreach($words1 as $word){
+            array_push($arr2, $word->title);
+        }
+
+        $right1 = array_intersect($request->title1, $arr1);
+        $wrong1 = array_diff($request->title1, $arr1);
+
+        $right2 = array_intersect($request->title2, $arr2);
+        $wrong2 = array_diff($request->title2, $arr2);
+
+        $right=array_merge($right1,$right2);
+
+        $wrong= array_merge($wrong1,$wrong2);
+
+        $answ = [];
+        array_push($answ,$right,$wrong);
+
+        return response()->json($answ, 200);
+    }
     /**
      * Display a listing of the resource.
      */

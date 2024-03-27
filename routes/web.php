@@ -34,3 +34,5 @@ Route::group(['middleware' => ['isadmin']], function(){
     Route::post('/admin/words/delete', [WordController::class, 'DeleteWord'])->name('DeleteWord');
 });
 
+Route::get('/game/categories/get',[CategoryController::class, 'gameCategoryGet'])->name('gameCategoryGet');
+Route::post('/game/check', [WordController::class, 'checkGame'])->name('checkGame');
