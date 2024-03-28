@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-primary" @click="Check">Проверить</button>
+    <button class="btn btn-primary mt-5" style="width: 200px" @touchend="Check">Проверить</button>
 </div>
 <style>
     .active{
@@ -179,7 +179,7 @@
         },
         mounted(){
             this.getCategory();
-            setTimeout(() => {
+            setInterval(() => {
                 this.InitGame();
             }, 550);
         }
