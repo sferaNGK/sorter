@@ -16,7 +16,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::guest() or !Auth::user()->isAdmin()){
+        if(Auth::guest()){
             return redirect()->route('show_adminreg_page');
         }
         return $next($request);

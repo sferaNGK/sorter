@@ -5,12 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Game extends Model
 {
     use HasFactory;
-    public function Words(){
-        return $this->hasMany(Word::class);
-    }
     public function GameCats(){
         return $this->hasMany(GameCat::class);
     }
