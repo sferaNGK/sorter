@@ -17,6 +17,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('show_words_page') }}">Слова</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('show_games_page') }}">Игры</a>
+          </li>
           @auth
           <li class="nav-item">
             <a class="nav-link" href="{{ route('AdminLog') }}">выйти</a>
