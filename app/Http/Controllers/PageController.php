@@ -36,4 +36,9 @@ class PageController extends Controller
     public function show_game(Game $game){
         return view('game.game',['game'=>$game]);
     }
+
+    public function game_page_show(Request $request){
+        $game = GameCat::with('Category')->where('game_id',$request->id)->get();
+        return response()->json($game);
+    }
 }
