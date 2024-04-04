@@ -15,7 +15,8 @@ return new class extends Migration
         Schema::create('words', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Category::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('title')->unique();
+            $table->string('title')->nullable()->unique();
+            $table->string('img')->nullable()->unique();
             $table->timestamps();
         });
     }

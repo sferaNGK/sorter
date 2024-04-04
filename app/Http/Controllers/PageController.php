@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\GameCat;
 use Illuminate\Http\Request;
 use App\Models\Game;
+use App\Models\Word;
 
 class PageController extends Controller
 {
@@ -39,6 +40,9 @@ class PageController extends Controller
 
     public function game_page_show(Request $request){
         $game = GameCat::with('Category')->where('game_id',$request->id)->get();
+        foreach($game as $gm){
+            $gm->category_id = Word::query()->where('category_id',$gm->category->id)->get();
+        }
         return response()->json($game);
     }
 }

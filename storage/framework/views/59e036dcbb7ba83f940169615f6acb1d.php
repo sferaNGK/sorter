@@ -1,5 +1,4 @@
-@extends('admin.index')
-@section('contented')
+<?php $__env->startSection('contented'); ?>
 <div class="container mt-5" id="Categories">
     <div class="container d-flex flex-row gap-5">
         <h5>Слова</h5>
@@ -30,7 +29,7 @@
                             <select id="type_id" name="category" class="form-select">
                                 <option selected disabled>Выберите категорию</option>
                                 <option v-for="category in categories" :value="category.id">
-                                    @{{ category.title }}
+                                    {{ category.title }}
                                 </option>
                             </select>
                         </div>
@@ -56,9 +55,9 @@
             </thead>
             <tbody>
               <tr v-for="word in words">
-                <th scope="row">@{{ word.id }}</th>
-                <td>@{{ word.title }}</td>
-                <td>@{{ word.category.title }}</td>
+                <th scope="row">{{ word.id }}</th>
+                <td>{{ word.title }}</td>
+                <td>{{ word.category.title }}</td>
                 <td>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="`#exampleModal_${word.id}`">
                         Редактировать
@@ -81,7 +80,7 @@
                                         <label for="select" class="form-label" style="color: black !important;">Выберите категорию</label>
                                         <select id="type_id" name="category" class="form-select">
                                             <option v-for="category in categories" :value="category.id">
-                                                @{{ category.title }}
+                                                {{ category.title }}
                                             </option>
                                         </select>
                                     </div>
@@ -115,10 +114,10 @@
             async AddWord(){
                 let form = document.getElementById('add_form');
                 let form_data = new FormData(form);
-                const response = await fetch('{{route('AddWord')}}',{
+                const response = await fetch('<?php echo e(route('AddWord')); ?>',{
                     method: 'post',
                     headers:{
-                        'X-CSRF-TOKEN':'{{ csrf_token() }}',
+                        'X-CSRF-TOKEN':'<?php echo e(csrf_token()); ?>',
                     },
                     body:form_data
                 });
@@ -128,20 +127,20 @@
                 let form = document.getElementById('edit_form');
                 let form_data = new FormData(form);
                 form_data.append('id',JSON.stringify(id));
-                const response = await fetch('{{route('EditWord')}}',{
+                const response = await fetch('<?php echo e(route('EditWord')); ?>',{
                     method: 'post',
                     headers:{
-                        'X-CSRF-TOKEN':'{{ csrf_token() }}',
+                        'X-CSRF-TOKEN':'<?php echo e(csrf_token()); ?>',
                     },
                     body:form_data
                 });
                 this.getWord();
             },
             async DeleteWord(id){
-                const response = await fetch('{{route('DeleteWord')}}',{
+                const response = await fetch('<?php echo e(route('DeleteWord')); ?>',{
                     method: 'post',
                     headers:{
-                        'X-CSRF-TOKEN':'{{ csrf_token() }}',
+                        'X-CSRF-TOKEN':'<?php echo e(csrf_token()); ?>',
                         'content-type':'application/json'
                     },
                     body:JSON.stringify({id:id})
@@ -149,11 +148,11 @@
                 this.getWord();
             },
             async getCategory(){
-                let response_categ = await fetch('{{ route('GetCategories') }}');
+                let response_categ = await fetch('<?php echo e(route('GetCategories')); ?>');
                 this.categories = await response_categ.json();
             },
             async getWord(){
-                let response_word = await fetch('{{ route('GetWord') }}');
+                let response_word = await fetch('<?php echo e(route('GetWord')); ?>');
                 this.words = await response_word.json();
                 console.log(this.words);
             }
@@ -165,4 +164,6 @@
     }
     Vue.createApp(app).mount('#Categories');
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('admin.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\vue\sorter\resources\views/admin/words/index.blade.php ENDPATH**/ ?>

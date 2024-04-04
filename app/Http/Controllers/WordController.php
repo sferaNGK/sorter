@@ -10,7 +10,7 @@ class WordController extends Controller
 {
     public function AddWord(Request $request){
         $valid = Validator::make($request->all(),[
-            'title'=>['required','unique:words','regex:/^[А-Яа-яA-Za-z\s]+$/u']
+            'title'=>['nullable','unique:words','regex:/^[А-Яа-яA-Za-z\s]+$/u']
         ],[
             'title.required'=>'Поле обязательно для заполнения',
             'title.unique'=>'Поле должно быть уникальным',
@@ -21,6 +21,9 @@ class WordController extends Controller
         }
         $word = new Word();
         $word->title=$request->title;
+        if($request->file('img')){
+            $word->img = '/storage/' . $request->file('img')->store('/public/img');
+        }
         $word->category_id=$request->category;
         $word->save();
         return redirect()->back();

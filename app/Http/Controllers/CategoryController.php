@@ -51,7 +51,7 @@ class CategoryController extends Controller
     public function gameCategories(Request $request){
         $words = [];
         foreach($request->all() as $id){
-            array_push($words, Word::with('Category')->where('category_id',$id->id)->get());
+            array_push($words, Word::query('Category')->where('category_id',$id->id)->get());
         }
         return response()->json($words);
     }
