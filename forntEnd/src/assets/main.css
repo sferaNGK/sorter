@@ -1,2 +1,42 @@
 @import './base.css';
 @import 'bootstrap';
+
+.list-group{
+    height: auto;
+    min-height: 200px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    flex-wrap: wrap;
+
+}
+.lg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    min-height: 50px !important;
+}
+.list-group-item{
+    cursor:grab;
+    width: 20%;
+    height: auto;
+    max-height: 70px;
+}
+.main{
+    height: 100vh !important;
+}
+
+.wrong{
+    transition: 0.2s;
+    background-color: red;
+    color: white;
+}
+.right{
+    pointer-events: none;
+    opacity: 0.4;
+    transition: 0.2s;
+    background-color: green;
+    color: white;
+}
+
