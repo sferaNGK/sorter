@@ -22,7 +22,7 @@ class WordController extends Controller
         $word = new Word();
         $word->title=$request->title;
         if($request->file('img')){
-            $word->img = '/sorter/public/storage/' . $request->file('img')->store('/img');
+            $word->img = '/storage/' . $request->file('img')->store('/img');
         }
         $word->category_id=$request->category;
         $word->save();
