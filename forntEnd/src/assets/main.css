@@ -1,6 +1,18 @@
 @import './base.css';
 @import 'bootstrap';
 
+
+.noBorder{
+    border: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.img{
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
 .list-group{
     height: auto;
     min-height: 200px;

@@ -9,8 +9,8 @@
               :list="list1"
             >
               <template #item="{ element }">
-                <div class="list-group-item border rounded text-center" :id="`element_${element.id}`">
-                    <img v-if="element.img" :src="element.img" alt="">
+                <div class="list-group-item border rounded text-center" :id="`element_${element.id}`" :class="element.img ? 'noBorder' : ''">
+                    <img v-if="element.img" :src="link + element.img" alt="" class="img">
                     <p v-else>{{ element.title }}</p>
                 </div>
               </template>
@@ -20,10 +20,16 @@
 </template>
 
 <script>
+import { computed } from "vue";
 import draggable from "vuedraggable"
 export default {
     components: {
         draggable
+    },
+    data(){
+      return{
+        link:'http://127.0.0.1:8000',
+      }
     },
     props:{
         list1:{
@@ -42,30 +48,34 @@ export default {
             type:Array
         }
     },
+    computed:{
+     list(){
+      return [...this.list1];
+     }
+    },
     watch:{
-    list1:{
-      handler(){
+    list:{
+      handler(newVal, oldVal){
+    
         if(this.children){
-            setTimeout(()=>{
-                let word;
-                this.list1.forEach(element => {
-                    word = document.getElementById(`element_${element.id}`);
-                });
-                console.log(word);
-                for(let i = 0; i<this.list1.length; i++){
-                  if(this.categories.includes(this.list1[i]) && this.list1[i].title === word.textContent){
+         
+          setTimeout(()=>{
+            let word;
+            this.list1.forEach(element => {
+              word = document.getElementById(`element_${element.id}`);
+            });
+            
+            for(let i = 0; i<this.list1.length; i++){
+              if((this.categories.includes(this.list1[i]) && this.list1[i].title === word.textContent) || (this.categories.includes(this.list1[i]) && 'http://127.0.0.1:8000' + this.list1[i].img === word.firstChild.src)){
                     word.classList.add('right');
-                    break;
-                }
-                  else{ 
-                    word.classList.add('wrong');
+                   break;
                 }
                 }
             },50)
 
         }
       },
-      deep:true
+      deep:true,
     },
   },
 }
