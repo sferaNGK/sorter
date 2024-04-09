@@ -23,6 +23,13 @@ class GameController extends Controller
         $game = new Game();
         $game->title=$request->title;
         $game->save();
+
+        foreach($request->games as $gamed){
+            $gameCat = new GameCat();
+            $gameCat->game_id = $game->id;
+            $gameCat->category_id = $gamed;
+            $gameCat->save();
+        }
         return redirect()->back();
     }
 
@@ -31,12 +38,6 @@ class GameController extends Controller
         $game->title = $request->title;
         $game->update();
 
-        foreach($request->games as $gamed){
-            $gameCat = new GameCat();
-            $gameCat->game_id = $request->id;
-            $gameCat->category_id = $gamed;
-            $gameCat->save();
-        }
         return redirect()->back();
     }
 

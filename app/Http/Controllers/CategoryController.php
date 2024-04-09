@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     public function AddCategory(Request $request){
         $valid = Validator::make($request->all(),[
-            'title'=>['required','unique:categories','regex:/^[А-Яа-яA-Za-z\s]+$/u']
+            'title'=>['required','unique:categories','regex:/^[А-Яа-яA-Za-z-\s]+$/u']
         ],[
             'title.required'=>'Поле обязательно для заполнения',
             'title.unique'=>'Поле должно быть уникальным',

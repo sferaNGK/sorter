@@ -15,7 +15,7 @@
                   <h1 class="modal-title fs-5" id="exampleModalLabel">Добавление слова</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form @submit.prevent="AddWord" id="add_form">
+                <form @submit.prevent="AddWord" id="add_form" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="exampleInputTitle1" class="form-label">Введите слово</label>
@@ -51,6 +51,7 @@
                 <th scope="col">id</th>
                 <th scope="col">Название</th>
                 <th scope="col">Категория</th>
+                <th scope="col">photo</th>
                 <th scope="col">Действие</th>
               </tr>
             </thead>
@@ -59,6 +60,7 @@
                 <th scope="row">@{{ word.id }}</th>
                 <td>@{{ word.title }}</td>
                 <td>@{{ word.category.title }}</td>
+                <td><img :src="word.img" style="width: 50px;"></td>
                 <td>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="`#exampleModal_${word.id}`">
                         Редактировать

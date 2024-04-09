@@ -21,6 +21,17 @@
                             <label for="exampleInputTitle1" class="form-label">Назавние Игры</label>
                             <input name="title" type="text" class="form-control" id="exampleInputTitle1">
                         </div>
+                        <div class="mb-3">
+                            <div id="inputs_games">
+                                <button type="button" @click="add_game_input" class="btn btn-info text-white">добавить категории</button>
+                                <div v-if="games_new.length != 0">
+                                    <label for="exampleInputEmail1" class="form-label">Введите подкатегорию</label>
+                                    <select class="form-control mt-2 mb-2" v-for="game in games_new" name="games[]">
+                                        <option v-for="category in categories" :value="category.id">@{{ category.title }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
@@ -62,17 +73,7 @@
                                         <label for="exampleInputTitle1" class="form-label">Назавние Игры</label>
                                         <input name="title" type="text" :value="game.title" class="form-control" id="exampleInputTitle1">
                                     </div>
-                                    <div class="mb-3">
-                                        <div id="inputs_games">
-                                            <button type="button" @click="add_game_input" class="btn btn-info text-white">добавить категории</button>
-                                            <div v-if="games_new.length != 0">
-                                                <label for="exampleInputEmail1" class="form-label">Введите подкатегорию</label>
-                                                <select class="form-control mt-2 mb-2" v-for="game in games_new" name="games[]">
-                                                    <option v-for="category in categories" :value="category.id">@{{ category.title }}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
@@ -124,6 +125,7 @@
                     },
                     body:form_data
                 });
+                this.ga
                 this.getGames();
             },
             async DeleteGame(id){
