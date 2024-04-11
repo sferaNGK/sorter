@@ -1,7 +1,7 @@
 <template>
-    <div class="container-fluid d-flex justify-content-center h-25 mt-4">
+
         <button @click="CheckResult" class="btn btn-primary w-25">Проверить</button>
-    </div>
+
 </template>
 <script>
 export default {
@@ -20,6 +20,11 @@ export default {
         },
         categories:{
             type:Array
+        },
+    },
+    data(){
+        return{
+            modal:false,
         }
     },
     methods:{
@@ -48,8 +53,7 @@ export default {
                 if((this.categories[3].includes(this.list4[i]) && this.list4[i].title == word.textContent) || (this.categories[3].includes(this.list4[i]) && 'http://127.0.0.1:8000' + this.list4[i].img === word.firstChild.src)){word.classList.add('right');}
                 }
             }
-
-            },
+        },
     }
 }
 </script>
