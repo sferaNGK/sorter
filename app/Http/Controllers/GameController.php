@@ -22,6 +22,7 @@ class GameController extends Controller
         }
         $game = new Game();
         $game->title=$request->title;
+        $game->style_id = $request->style;
         $game->save();
 
         foreach($request->games as $gamed){
@@ -36,6 +37,7 @@ class GameController extends Controller
     public function EditGame(Request $request){
         $game = Game::query()->where('id',$request->id)->first();
         $game->title = $request->title;
+        $game->style_id = $request->style;
         $game->update();
 
         return redirect()->back();
@@ -75,7 +77,7 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        $game = Game::all();
+        $game = Game::with('Style')->get();
         return response()->json($game);
     }
 

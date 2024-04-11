@@ -20,6 +20,9 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ route('show_games_page') }}">Игры</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('show_styles_page') }}">Стили</a>
+          </li>
           @auth
           <li class="nav-item">
             <a class="nav-link" href="{{ route('AdminLog') }}">выйти</a>

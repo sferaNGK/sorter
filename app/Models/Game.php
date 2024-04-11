@@ -11,4 +11,7 @@ class Game extends Model
     public function GameCats(){
         return $this->hasMany(GameCat::class);
     }
+    public function Style(){
+        return $this->belongsTo(Style::class);
+    }
 }

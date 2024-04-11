@@ -16,4 +16,5 @@ Route::get('/games',function(){
     return response()->json($game);
 });
 Route::get('/game/{id}',[PageController::class, 'game_page_show']);
+Route::get('/gamed/{id}',[PageController::class, 'game_page_show1']);
 Route::post('/categories',[CategoryController::class, 'gameCategories']);

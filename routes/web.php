@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GameCatController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\StyleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WordController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,7 @@ Route::post('/admin/reg',[UserController::class, 'AuthAdmin'])->name('AuthAdmin'
     Route::get('/admin/categories', [PageController::class, 'show_categories_page'])->name('show_categories_page');
     Route::get('/admin/words', [PageController::class, 'show_words_page'])->name('show_words_page');
     Route::get('/admin/games', [PageController::class, 'show_games_page'])->name('show_games_page');
+    Route::get('/admin/styles', [PageController::class, 'show_styles_page'])->name('show_styles_page');
 
     Route::get('/admin/logout',[UserController::class, 'AdminLog'])->name('AdminLog');
 
@@ -40,6 +42,12 @@ Route::post('/admin/reg',[UserController::class, 'AuthAdmin'])->name('AuthAdmin'
     Route::post('/admin/game/add', [GameController::class, 'AddGame'])->name('AddGame');
     Route::post('/admin/game/edit', [GameController::class, 'EditGame'])->name('EditGame');
     Route::post('/admin/game/delete', [GameController::class, 'DeleteGame'])->name('DeleteGame');
+
+    // Styles
+    Route::get('/admin/style/get', [StyleController::class, 'show'])->name('GetStyle');
+    Route::post('/admin/style/add', [StyleController::class, 'AddStyle'])->name('AddStyle');
+    Route::post('/admin/style/edit', [StyleController::class, 'EditStyle'])->name('EditStyle');
+    Route::post('/admin/style/delete', [StyleController::class, 'DeleteStyle'])->name('DeleteStyle');
 
 // GameCat
 Route::get('/gameCat/get', [GameCatController::class, 'show'])->name('getGameCat');

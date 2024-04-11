@@ -2,9 +2,9 @@
 @section('contented')
 <div class="container mt-5" id="Categories">
     <div class="container d-flex flex-row gap-5">
-        <h5>Игры</h5>
+        <h5>Стили</h5>
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Добавить Игру
+            Добавить стиль
           </button>
 
           <!-- Modal -->
@@ -12,31 +12,18 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">Добавление Игры</h1>
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Добавление стиля</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form @submit.prevent="AddGame" id="add_form">
+                <form @submit.prevent="AddWord" id="add_form" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="exampleInputTitle1" class="form-label">Назавние Игры</label>
+                            <label for="exampleInputTitle1" class="form-label">Введите название</label>
                             <input name="title" type="text" class="form-control" id="exampleInputTitle1">
                         </div>
-                          <div class="mb-3">
-                            <label for="exampleInputCss1" class="form-label">Выберите стиль</label>
-                            <select class="form-control mt-2 mb-2" name="style">
-                                <option v-for="style in styles" :value="style.id">@{{ style.title }}</option>
-                            </select>
-                        </div>
                         <div class="mb-3">
-                            <div id="inputs_games">
-                                <button type="button" @click="add_game_input" class="btn btn-info text-white">добавить категории</button>
-                                <div v-if="games_new.length != 0">
-                                    <label for="exampleInputEmail1" class="form-label">Введите подкатегорию</label>
-                                    <select class="form-control mt-2 mb-2" v-for="game in games_new" name="games[]">
-                                        <option v-for="category in categories" :value="category.id">@{{ category.title }}</option>
-                                    </select>
-                                </div>
-                            </div>
+                            <label for="exampleInputImg1" class="form-label">Вставте файл</label>
+                            <input name="css" type="file" class="form-control" id="exampleInputImg1">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -58,28 +45,31 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="game in games">
-                <th scope="row">@{{ game.id }}</th>
-                <td>@{{ game.title }}</td>
+              <tr v-for="word in words">
+                <th scope="row">@{{ word.id }}</th>
+                <td>@{{ word.title }}</td>
                 <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="`#exampleModal_${game.id}`">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="`#exampleModal_${word.id}`">
                         Редактировать
                       </button>
 
-                    <div class="modal fade" :id="`exampleModal_${game.id}`" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" :id="`exampleModal_${word.id}`" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Изменение категории</h1>
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Изменение стиля</h1>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form @submit.prevent="EditGame(game.id)" id="edit_form">
+                            <form @submit.prevent="EditWord(word.id)" id="edit_form">
                                 <div class="modal-body">
                                     <div class="mb-3">
-                                        <label for="exampleInputTitle1" class="form-label">Назавние Игры</label>
-                                        <input name="title" type="text" :value="game.title" class="form-control" id="exampleInputTitle1">
+                                        <label for="exampleInputTitle1" class="form-label">Назавние стиля</label>
+                                        <input name="title" type="text" :value="word.title" class="form-control" id="exampleInputTitle1">
                                     </div>
-
+                                    <div class="mb-3">
+                                        <label for="select" class="form-label" style="color: black !important;">Выберите категорию</label>
+                                        <input name="img" type="file" class="form-control" id="exampleInputImg1">
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
@@ -89,7 +79,7 @@
                           </div>
                         </div>
                       </div>
-                    <button class="btn btn-danger ms-2" @click="DeleteGame(game.id)">Удалить</button>
+                    <button class="btn btn-danger ms-2" @click="DeleteWord(word.id)">Удалить</button>
                 </td>
               </tr>
             </tbody>
@@ -101,42 +91,38 @@
         data(){
             return{
                 errors: [],
-                games:[],
                 message: '',
-                categories:[],
-                games_new:[],
-                styles:[],
+                words:[],
             }
         },
         methods:{
-            async AddGame(){
+            async AddWord(){
                 let form = document.getElementById('add_form');
                 let form_data = new FormData(form);
-                const response = await fetch('{{route('AddGame')}}',{
+                const response = await fetch('{{route('AddStyle')}}',{
                     method: 'post',
                     headers:{
                         'X-CSRF-TOKEN':'{{ csrf_token() }}',
                     },
                     body:form_data
                 });
-                this.getCategory();
+                this.getWord();
             },
-            async EditGame(id){
+            async EditWord(id){
                 let form = document.getElementById('edit_form');
                 let form_data = new FormData(form);
                 form_data.append('id',JSON.stringify(id));
-                const response = await fetch('{{route('EditGame')}}',{
+                const response = await fetch('{{route('EditStyle')}}',{
                     method: 'post',
                     headers:{
                         'X-CSRF-TOKEN':'{{ csrf_token() }}',
                     },
                     body:form_data
                 });
-                this.ga
-                this.getGames();
+                this.getWord();
             },
-            async DeleteGame(id){
-                const response = await fetch('{{route('DeleteGame')}}',{
+            async DeleteWord(id){
+                const response = await fetch('{{route('DeleteWord')}}',{
                     method: 'post',
                     headers:{
                         'X-CSRF-TOKEN':'{{ csrf_token() }}',
@@ -144,28 +130,15 @@
                     },
                     body:JSON.stringify({id:id})
                 });
-                this.getGames();
+                this.getWord();
             },
-            async getGames(){
-                let response_categ = await fetch('{{ route('GetGames') }}');
-                this.games = await response_categ.json();
-            },
-            async getCategory(){
-                let response_categ = await fetch('{{ route('GetCategories') }}');
-                this.categories = await response_categ.json();
-            },
-            async getStyle(){
+            async getWord(){
                 let response_word = await fetch('{{ route('GetStyle') }}');
-                this.styles = await response_word.json();
-            },
-            add_game_input(){
-                this.games_new.push('');
+                this.words = await response_word.json();
             }
         },
         mounted(){
-            this.getGames();
-            this.getCategory();
-            this.getStyle();
+            this.getWord();
         }
     }
     Vue.createApp(app).mount('#Categories');

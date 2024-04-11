@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\GameCat;
 use Illuminate\Http\Request;
 use App\Models\Game;
+use App\Models\Style;
 use App\Models\Word;
 
 class PageController extends Controller
@@ -15,6 +16,10 @@ class PageController extends Controller
 
     public function show_adminreg_page(){
         return view('admin.enter');
+    }
+
+    public function show_styles_page(){
+        return view('admin.styles.index');
     }
 
     public function show_categories_page(){
@@ -39,10 +44,14 @@ class PageController extends Controller
     }
 
     public function game_page_show(Request $request){
-        $game = GameCat::with('Category')->where('game_id',$request->id)->get();
+        $game = GameCat::with('Category','Game')->where('game_id',$request->id)->get();
         foreach($game as $gm){
             $gm->category_id = Word::query()->where('category_id',$gm->category->id)->get();
         }
         return response()->json($game);
+    }
+    public function game_page_show1(Request $request){
+      $game = Game::with('Style')->where('id', $request->id)->first();
+      return response()->json($game);
     }
 }
