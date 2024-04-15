@@ -1,7 +1,12 @@
 @import './base.css';
 @import 'bootstrap';
 
-
+html, body {
+    overflow-x: hidden !important;
+  }
+  body {
+    position: relative !important;
+  }
 .noBorder{
     border: none !important;
     display: flex;
@@ -39,6 +44,7 @@
     width: 20%;
     height: auto;
     max-height: 70px;
+    background-color: transparent;
 }
 .main{
     height: 100vh !important;
@@ -46,7 +52,7 @@
 
 .wrong{
     transition: 0.2s;
-    background-color: red;
+    background-color: rgb(190, 44, 44);
     color: white;
 }
 .right{

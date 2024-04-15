@@ -67,6 +67,9 @@ export default {
                     word.classList.add('right');
                     break;
                 }
+                else{
+                    word.classList.add('wrong');
+                }
                 }
             },50)
 
