@@ -70,14 +70,18 @@
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Изменение категории</h1>
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Изменение Слова/Изображения</h1>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <form @submit.prevent="EditWord(word.id)" id="edit_form">
                                 <div class="modal-body">
                                     <div class="mb-3">
-                                        <label for="exampleInputTitle1" class="form-label">Назавние категории</label>
+                                        <label for="exampleInputTitle1" class="form-label">Назавние</label>
                                         <input name="title" type="text" :value="word.title" class="form-control" id="exampleInputTitle1">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputImg1" class="form-label">Вставте фото</label>
+                                        <input name="img" type="file" class="form-control" id="exampleInputImg1">
                                     </div>
                                     <div class="mb-3">
                                         <label for="select" class="form-label" style="color: black !important;">Выберите категорию</label>

@@ -21,10 +21,17 @@
                             <label for="exampleInputTitle1" class="form-label">Назавние Игры</label>
                             <input name="title" type="text" class="form-control" id="exampleInputTitle1">
                         </div>
-                          <div class="mb-3">
+                        <div class="mb-3">
                             <label for="exampleInputCss1" class="form-label">Выберите стиль</label>
                             <select class="form-control mt-2 mb-2" name="style">
                                 <option v-for="style in styles" :value="style.id">@{{ style.title }}</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputCss1" class="form-label">Выберите Режим игры</label>
+                            <select class="form-control mt-2 mb-2" name="button">
+                                <option value="false">Режим игры без кнопки</option>
+                                <option value="true">Режим игры с кнопкой</option>
                             </select>
                         </div>
                         <div class="mb-3">

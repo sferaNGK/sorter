@@ -23,6 +23,7 @@ class GameController extends Controller
         $game = new Game();
         $game->title=$request->title;
         $game->style_id = $request->style;
+        $game->button = $request->button;
         $game->save();
 
         foreach($request->games as $gamed){

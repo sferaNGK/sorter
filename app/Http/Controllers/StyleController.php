@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Style;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StyleController extends Controller
 {
@@ -12,9 +13,20 @@ class StyleController extends Controller
         $style = new Style();
         $style->title=$request->title;
         if($request->file('css')){
-            $style->path = '/storage/'.$request->file('css')->store('/public/style');
-            $style->path = str_replace('public/',"",$style->path);
-            $style->path = str_replace('.txt',".css",$style->path);
+            // New
+            $origName = $request->css->getClientOriginalName();
+            $path = '/style/';
+            $file = $request->css;
+            Storage::disk('public')->putFileAs($path,$file, $origName);
+            $style->path = '/storage/style/'.$origName;
+            // $style->path = '/storage/'.$request->css->getClientOriginalName()->store('/public/style');
+            // dd($style->path);
+            // $request->css->move(public_path('uploads'), $style->path);
+
+            // OLD
+            // $style->path = '/storage/'.$request->file('css')->store('/public/style');
+            // $style->path = str_replace('.txt',".css",$style->path);
+            // $style->path = str_replace('public/',"",$style->path);
         }
         $style->save();
         return redirect()->back();

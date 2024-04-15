@@ -34,6 +34,7 @@ class WordController extends Controller
         $word = Word::query()->where('id', $request->id)->first();
         $word->title = $request->title;
         $word->category_id = $request->category;
+        $word->img = $request->img;
         $word->update();
         return redirect()->back();
     }
