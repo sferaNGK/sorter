@@ -1,15 +1,17 @@
 <template>
-    <div class="col-6">
-        <div class="col-12 h-100">
-            <h3 class="text-center">{{ cat }}</h3>
+    <div class="col-5 border">
+        <div class="col-12 p-2 d-flex justify-content-center flex-column align-items-center">
+            <div class="border col-6" style="background-color: #262626;">
+                <h3 class="text-center text-white">{{ cat }}</h3>
+            </div>
             <draggable
-              class="list-group p-2 border rounded mt-3"
+              class="list-group d-flex flex-row p-2"
               group="people"
               itemKey="name"
               :list="list1"
             >
               <template #item="{ element }">
-                <div class="list-group-item border rounded text-center" :id="`element_${element.id}`" :class="element.img ? 'noBorder' : ''">
+                <div class="list-group-item border rounded text-center d-flex align-items-center justify-content-center" :id="`element_${element.id}`" :class="element.img ? 'noBorder' : ''">
                     <img v-if="element.img" :src="link + element.img" alt="" class="img-enter">
                     <p v-else>{{ element.title }}</p>
                 </div>
@@ -20,15 +22,15 @@
 </template>
 
 <script>
-import { computed } from "vue";
 import draggable from "vuedraggable"
+import { link } from "@/main"
 export default {
     components: {
         draggable
     },
     data(){
       return{
-        link:'http://127.0.0.1:8000',
+        link:'',
       }
     },
     props:{
@@ -54,16 +56,18 @@ export default {
     watch:{
     list:{
       handler(newVal, oldVal){
-
         if(this.children){
 
           setTimeout(()=>{
             let word;
+            let arr;
             this.list1.forEach(element => {
               word = document.getElementById(`element_${element.id}`);
             });
+            word.classList.remove('right');
+            word.classList.remove('wrong');
             for(let i = 0; i<this.list1.length; i++){
-              if((this.categories.includes(this.list1[i]) && this.list1[i].title === word.textContent) || (this.categories.includes(this.list1[i]) && 'http://127.0.0.1:8000' + this.list1[i].img === word.firstChild.src)){
+              if((this.categories.includes(this.list1[i]) && this.list1[i].title === word.textContent) || (this.categories.includes(this.list1[i]) && this.link + this.list1[i].img === word.firstChild.src)){
                     word.classList.add('right');
                     break;
                 }
@@ -78,6 +82,9 @@ export default {
       deep:true,
     },
   },
+  mounted(){
+    this.link = link;
+  }
 }
 </script>
 

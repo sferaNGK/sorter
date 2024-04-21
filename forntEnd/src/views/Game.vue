@@ -1,20 +1,20 @@
 <template>
     <ModalFirst/>
     <ModalEnd :v-bind:modal="modal" v-if="modal == true"/>
-    <div class="main">
-        <div class="row col-12 p-5">
-            <DragPlace v-bind:children="children" v-bind:categories="categories[0]" v-bind:list1="list1" v-bind:cat="cat1"></DragPlace>
-            <DragPlace class="mb-2" v-bind:children="children" v-bind:categories="categories[1]" v-if="cat2 != ''" v-bind:list1="list2" v-bind:cat="cat2"></DragPlace>
+    <div class="main d-flex">
+        <div class="d-flex flex-row flex-wrap align-items-center justify-content-center gap-2 col-12">
+            <DragPlace :style="{background: 'url(' + '\'/src/assets/images/left.svg\'' +') no-repeat 0 3px'}" v-bind:children="children" v-bind:categories="categories[0]" v-bind:list1="list1" v-bind:cat="cat1"></DragPlace>
+            <DragPlace :style="{background: 'url(' + '\'/src/assets/images/right.svg\'' +') no-repeat 0 3px'}" v-bind:children="children" v-bind:categories="categories[1]" v-if="cat2 != ''" v-bind:list1="list2" v-bind:cat="cat2"></DragPlace>
             <DragPlace v-bind:children="children" v-bind:categories="categories[2]" v-if="cat3 != ''" v-bind:list1="list3" v-bind:cat="cat3"></DragPlace>
             <DragPlace v-bind:children="children" v-bind:categories="categories[3]" v-if="cat4 != ''" v-bind:list1="list4" v-bind:cat="cat4"></DragPlace>
         </div>
-        <div v-if="adult" class="d-flex flex-row text-center align-items-center justify-content-center">
+        <!-- <div v-if="adult" class="d-flex flex-row text-center align-items-center justify-content-center">
             Число верных ответов: {{ count }}
-        </div>
-        <DragWord v-if="words.length > 0" v-bind:words="words"/>
-        <div class="container-fluid d-flex justify-content-center" style="margin-top: 250px;">
+        </div> -->
+        <!-- <div class="container-fluid d-flex justify-content-center" style="margin-top: 250px;">
             <CheckButt v-if="adult" @changeValue="UpdateValue" v-bind:list1="list1" v-bind:list2="list2" v-bind:list3="list3" v-bind:list4="list4" v-bind:categories="categories"/>
-        </div>
+        </div> -->
+        <DragWord v-if="words.length > 0" v-bind:words="words"/>
     </div>
 </template>
 <script>

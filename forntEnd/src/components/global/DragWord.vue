@@ -1,14 +1,15 @@
 <template>
-    <div class="col-12 d-flex align-items-end justify-content-center" style="position: absolute;">
-        <div class="w-50 h-25 p-5">
+    <div class="d-flex align-items-center justify-content-center border p-5" style=" position:absolute; margin-top:20%; margin-left:43%; z-index:500;   background-color: #262626; width:15%; height:20%">
+        <div>
             <draggable
-              class="list-group lg"
+              class="list-group d-flex justify-content-center align-items-center w-100 h-50 p-2"
               :list="words"
               group="people"
               itemKey="name"
             >
+               <!-- style="max-height:100%" -->
               <template #item="{ element }">
-                <div class="list-group-item border rounded text-center" :id="`element_${element.id}`" :class="element.img ? 'noBorder' : ''">
+                <div class="list-group-item lg rounded text-center text-white" style=" background-color: rgb(73, 73, 73);" :id="`element_${element.id}`" :class="element.img ? 'noBorder' : ''">
                     <img v-if="element.img" :src="link + element.img" alt="" class="img">
                     <p v-else>{{ element.title }}</p>
                 </div>
@@ -27,7 +28,7 @@ export default {
     },
     data(){
       return{
-        link:'http://127.0.0.1:8000',
+        link:'',
         y:'',
       }
     },
@@ -58,6 +59,7 @@ export default {
 },
 mounted(){
     this.y = '1';
+    this.link = link;
 }
 }
 </script>
