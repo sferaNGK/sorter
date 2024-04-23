@@ -5,13 +5,25 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header d-flex align-items-center justify-content-center">
-                        <h5 class="modal-title">
+                        <h5 class="modal-title" v-if="length == count && children === false">
                             Победа!
+                        </h5>
+                        <h5 class="modal-title" v-else-if="children === true">
+                            Поздравляем!
+                        </h5>
+                        <h5 class="modal-title" v-else>
+                            Сожалеем!
                         </h5>
                     </div>
                     <div class="modal-body">
-                        <p>
+                        <p v-if="length == count && children === false">
                           Поздравляем, вы распределили всё правильно!
+                        </p>
+                        <p v-else-if="children === true">
+                          Вы верно распределили {{ count }} элементов
+                        </p>
+                        <p v-else>
+                          Вы верно распределили {{ count }} элементов
                         </p>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
@@ -30,6 +42,15 @@ export default {
     props:{
         modal:{
             type:Boolean,
+        },
+        count:{
+            type:Number
+        },
+        length:{
+            type:Number
+        },
+        children:{
+            type:Boolean
         }
     }
 }

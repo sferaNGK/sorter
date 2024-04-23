@@ -1,20 +1,17 @@
 <template>
     <ModalFirst/>
-    <ModalEnd :v-bind:modal="modal" v-if="modal == true"/>
-    <div class="main d-flex">
+    <ModalEnd :v-bind:modal="modal" :count="count" :length="length" v-bind:children="children" v-if="modal == true"/>
+    <div class="main d-flex flex-column align-items-center justify-content-center">
         <div class="d-flex flex-row flex-wrap align-items-center justify-content-center gap-2 col-12">
-            <DragPlace :style="{background: 'url(' + '\'/src/assets/images/left.svg\'' +') no-repeat 0 3px'}" v-bind:children="children" v-bind:categories="categories[0]" v-bind:list1="list1" v-bind:cat="cat1"></DragPlace>
-            <DragPlace :style="{background: 'url(' + '\'/src/assets/images/right.svg\'' +') no-repeat 0 3px'}" v-bind:children="children" v-bind:categories="categories[1]" v-if="cat2 != ''" v-bind:list1="list2" v-bind:cat="cat2"></DragPlace>
-            <DragPlace v-bind:children="children" v-bind:categories="categories[2]" v-if="cat3 != ''" v-bind:list1="list3" v-bind:cat="cat3"></DragPlace>
-            <DragPlace v-bind:children="children" v-bind:categories="categories[3]" v-if="cat4 != ''" v-bind:list1="list4" v-bind:cat="cat4"></DragPlace>
+            <DragPlace :length="length" :style="{background: 'url(' + '\'/src/assets/images/left.svg\'' +') no-repeat 0 3px'}" v-bind:children="children" v-bind:categories="categories[0]" v-bind:list1="list1" v-bind:cat="cat1"></DragPlace>
+            <DragPlace :length="length" :style="{background: 'url(' + '\'/src/assets/images/right.svg\'' +') no-repeat 0 3px'}" v-bind:children="children" v-bind:categories="categories[1]" v-if="cat2 != ''" v-bind:list1="list2" v-bind:cat="cat2"></DragPlace>
+            <DragPlace :length="length" v-bind:children="children" v-bind:categories="categories[2]" v-if="cat3 != ''" v-bind:list1="list3" v-bind:cat="cat3"></DragPlace>
+            <DragPlace :length="length" v-bind:children="children" v-bind:categories="categories[3]" v-if="cat4 != ''" v-bind:list1="list4" v-bind:cat="cat4"></DragPlace>
         </div>
-        <!-- <div v-if="adult" class="d-flex flex-row text-center align-items-center justify-content-center">
-            Число верных ответов: {{ count }}
-        </div> -->
-        <!-- <div class="container-fluid d-flex justify-content-center" style="margin-top: 250px;">
-            <CheckButt v-if="adult" @changeValue="UpdateValue" v-bind:list1="list1" v-bind:list2="list2" v-bind:list3="list3" v-bind:list4="list4" v-bind:categories="categories"/>
-        </div> -->
         <DragWord v-if="words.length > 0" v-bind:words="words"/>
+            <div class="container-fluid d-flex justify-content-center mt-5">
+                <CheckButt v-if="adult" v-on:changeValue="changeValue" v-bind:list1="list1" v-bind:list2="list2" v-bind:list3="list3" v-bind:list4="list4" v-bind:categories="categories"/>
+            </div>
     </div>
 </template>
 <script>
@@ -104,32 +101,14 @@ export default {
             document.head.appendChild(css)
         });
     },
-    UpdateValue(value){
+    changeValue(value){
        this.count = value;
+       console.log(value);
        if(this.words.length == 0){
-
-                if(this.count == this.length){
-                    this.modal = true;
-                }
-            }
+            this.modal = true;
+        }
     }
   },
-  watch:{
-    words:{
-        handler(){
-            if(this.children){
-                setTimeout(()=>{
-                    let wod = document.querySelectorAll('.right');
-                    if(wod.length == this.length){
-                        this.modal = true;
-                    }
-                },70)
-            }
-
-        },
-        deep:true
-    }
-    },
   mounted() {
     this.CreateCss(this.$route.params.id);
     this.getGames(this.$route.params.id);

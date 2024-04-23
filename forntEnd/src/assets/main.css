@@ -1,6 +1,46 @@
 @import './base.css';
 @import 'bootstrap';
 
+/* Для drops */
+.list-group{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    overflow-y: auto;
+}
+.list-group-word{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.list-group-item-word{
+    cursor:grab;
+    flex-wrap: wrap;
+    background-color: transparent;
+}
+.list-group-item{
+    cursor:grab;
+    height: auto;
+    font-size: 16px;
+    background-color: white;
+}
+.ghost{
+    opacity: 0;
+}
+
+/* .sortable-chosen{
+    opacity: 1 !important;
+}
+.sortable-ghost{
+    opacity: 0 !important;
+} */
+
+
+
+
 html, body {
     overflow-x: hidden !important;
   }
@@ -14,12 +54,6 @@ html, body {
     align-items: center;
     justify-content: center;
 }
-.sortable-chosen{
-    opacity: 1 !important;
-}
-.sortable-ghost{
-    opacity: 0 !important;
-}
 .img{
     width: 280px;
     height: 280px;
@@ -30,42 +64,27 @@ html, body {
     height: 80px;
     object-fit: contain;
 }
-.list-group{
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    flex-wrap: wrap;
-    height:auto !important;
-    min-height: 800px;
-}
-.lg{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px !important;
-}
-.list-group-item{
-    cursor:grab;
-    width: 30%;
-    height: auto;
-    min-height: 180px;
-    max-height: 100px;
-    flex-wrap: wrap;
-    background-color: transparent;
-}
+
 .main{
     height: 100vh !important;
 }
 
 .wrong{
-    transition: 0.2s;
-    background-color: rgb(190, 44, 44);
+    background-color: rgb(171, 41, 41);
     color: white;
 }
 .right{
-    pointer-events: none;
-    transition: 0.2s;
-    background-color: rgb(27, 70, 27);
     color: white;
+    background-color: rgb(18, 130, 18);
 }
 
+.right-btn{
+    /* pointer-events: none; */
+    background-color: rgb(18, 130, 18);
+    color: white;
+}
+.wrong-btn{
+    /* pointer-events: none; */
+    background-color: rgb(171, 41, 41);
+    color: white;
+}
