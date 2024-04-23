@@ -11,6 +11,7 @@
               group="people"
               itemKey="name"
             style="background-color:#262627;"
+            @change="log"
             >
                <!-- style="max-height:100%" -->
               <template #item="{ element }">
@@ -30,12 +31,6 @@ export default {
     components: {
         draggable
     },
-    data(){
-      return{
-        link:'',
-        y:'',
-      }
-    },
     props:{
         words:{
             type:Array
@@ -47,32 +42,24 @@ export default {
     },
     methods:{
         log(event){
-            console.log(event);
+           for(let i = 0; i < this.words.length; i++){
+                if(this.words[i] != this.words[0]){
+                    let word = document.getElementById(`element_${this.words[i].id}`);
+                    word.classList.add('d-none');
+                }
+           }
+        },
+        loading(){
+            for(let i = 0; i < this.words.length; i++){
+                if(this.words[i] != this.words[0]){
+                    let word = document.getElementById(`element_${this.words[i].id}`);
+                    word.classList.add('d-none');
+                }
+           }
         }
     },
-    watch:{
-    y:{
-        handler(){
-            if(this.y == 1){
-                let word = this.words[0];
-                for(let i = 0; this.words.length; i++){
-                    if(this.words[i] === undefined){
-                        break;
-                    }
-                    else if(this.words[i].id != word.id){
-                        word = document.getElementById(`element_${this.words[i].id}`);
-                        word.classList.add('d-none');
-                    }
-
-                }
-            }
-        },
-        deep: true
-    }
-},
 mounted(){
-    this.y = '1';
-    this.link = link;
+    this.loading();
 }
 }
 </script>
