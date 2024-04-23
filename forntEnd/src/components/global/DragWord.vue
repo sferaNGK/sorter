@@ -28,6 +28,11 @@
 import draggable from "vuedraggable"
 import { link } from "@/main"
 export default {
+     data(){
+      return{
+        link:'',
+      }
+    },
     components: {
         draggable
     },
@@ -60,6 +65,7 @@ export default {
     },
 mounted(){
     this.loading();
+    this.link = link;
 }
 }
 </script>
