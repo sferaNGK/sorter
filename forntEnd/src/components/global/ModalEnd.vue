@@ -5,25 +5,28 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header d-flex align-items-center justify-content-center">
-                        <h5 class="modal-title" v-if="length == count && children === false">
+                        <h5 class="modal-title" v-if="length == count && children == false">
                             Победа!
                         </h5>
-                        <h5 class="modal-title" v-else-if="children === true">
+                        <h5 class="modal-title" v-else-if="children == false && count != 0">
                             Поздравляем!
                         </h5>
-                        <h5 class="modal-title" v-else>
+                        <h5 class="modal-title" v-else-if="children == false">
                             Сожалеем!
+                        </h5>
+                        <h5 class="modal-title" v-else>
+                            Поздравляем!
                         </h5>
                     </div>
                     <div class="modal-body">
-                        <p v-if="length == count && children === false">
+                        <p v-if="length == count && children === false || children == true">
                           Поздравляем, вы распределили всё правильно!
                         </p>
                         <p v-else-if="children === true">
-                          Вы верно распределили {{ count }} элементов
+                          Вы верно распределили {{ count }} элемента(ов)
                         </p>
                         <p v-else>
-                          Вы верно распределили {{ count }} элементов
+                          Вы верно распределили {{ count }} элемента(ов)
                         </p>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">

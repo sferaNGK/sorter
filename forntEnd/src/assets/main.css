@@ -9,35 +9,74 @@
     gap: 15px;
     overflow-y: auto;
 }
+/* Imgaes */
+
+.first{
+    background-size: cover !important;
+}
+.second{
+    background-size: cover !important;
+}
+.third{
+    background-size: cover !important;
+}
+.fourth{
+    background-size: cover !important;
+}
+
+.two{
+    height: 80vh;
+}
+.three{
+    height: 40vh;
+}
+.four{
+    height: 40vh;
+}
+
+
 .list-group-word{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
     gap: 15px;
     flex-wrap: wrap;
 }
 
 .list-group-item-word{
     cursor:grab;
+    width: 90%;
+    font-size: 14px;
+    height: auto !important;
     flex-wrap: wrap;
     background-color: transparent;
 }
 .list-group-item{
     cursor:grab;
-    height: auto;
-    font-size: 16px;
+    max-height:min-content !important;
+    font-size: 14px;
+    width: 30%;
+    height: 20%;
+    overflow-y:auto;
+    overflow-x: hidden;
+    max-height: fit-content !important;
     background-color: white;
 }
+
+.lg-min{
+    width: 15%;
+}
+/*
+.sortable-chosen{
+    height: auto !important;
+} */
+/* .sortable-ghost{
+    opacity: 1 !important;
+} */
 .ghost{
     opacity: 0;
 }
-
-/* .sortable-chosen{
-    opacity: 1 !important;
-}
-.sortable-ghost{
-    opacity: 0 !important;
-} */
-
 
 
 
@@ -55,9 +94,13 @@ html, body {
     justify-content: center;
 }
 .img{
-    width: 280px;
-    height: 280px;
+    width: 180px;
+    height: auto !important;
     object-fit: contain;
+}
+.blockBtn{
+    display: flex;
+    align-items: baseline !important;
 }
 .img-enter{
     width: 80px;
@@ -79,12 +122,12 @@ html, body {
 }
 
 .right-btn{
-    /* pointer-events: none; */
+    pointer-events: none;
     background-color: rgb(18, 130, 18);
     color: white;
 }
 .wrong-btn{
-    /* pointer-events: none; */
+    pointer-events: none;
     background-color: rgb(171, 41, 41);
     color: white;
 }

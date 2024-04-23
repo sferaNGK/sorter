@@ -1,11 +1,11 @@
 <template>
     <div class="col-5 border">
-        <div class="col-12 p-2 d-flex justify-content-start flex-column align-items-center" style="height:80vh">
-            <div class="border col-6" style="background-color: #262626;">
+        <div class="col-12 p-3 d-flex justify-content-start flex-column align-items-center" :class="two ? 'two' : three ? 'three' : four ? 'four' : ''">
+            <div class="border col-6 mt-4" style="background-color: #262626;">
                 <h3 class="text-center text-white">{{ cat }}</h3>
             </div>
             <draggable
-              class="list-group border p-2 h-100 container-fluid"
+              class="list-group p-2 h-100 container-fluid"
               group="people"
               itemKey="name"
               ghost-class="ghost"
@@ -14,9 +14,9 @@
               @change="log"
             >
               <template #item="{ element }">
-                <div class="list-group-item col-3 h-25" :id="`element_${element.id}`" :class="element.img ? 'noBorder' : ''">
+            <div class="list-group-item col-3 rounded border" :id="`element_${element.id}`" :class="element.img ? 'noBorder' : '', three ? 'lg-min' : ''">
                     <img v-if="element.img" :src="link + element.img" alt="" class="img-enter">
-                    <p v-else>{{ element.title }}</p>
+                    <p class="w-100 h-100 p-0 m-0" v-else>{{ element.title }}</p>
                 </div>
               </template>
             </draggable>
@@ -52,7 +52,16 @@ export default {
         },
         length:{
             type: Number,
-        }
+        },
+        two:{
+            type:Boolean
+        },
+        three:{
+            type:Boolean
+        },
+        four:{
+            type:Boolean
+        },
     },
     methods:{
         log(event){
@@ -73,10 +82,10 @@ export default {
              //    Придумать как передовать пропс через emit
                 let wod = document.querySelectorAll('.right');
                 if(wod.length == this.length){
-                 console.log(123);
+                    this.$emit("changeValue", wod.length);
                 }
             }
-        }
+        },
     },
     computed:{
      list(){
@@ -84,7 +93,7 @@ export default {
      }
     },
   mounted(){
-    this.link = link;
+      this.link = link;
   }
 }
 </script>
