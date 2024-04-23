@@ -10,7 +10,7 @@ class WordController extends Controller
 {
     public function AddWord(Request $request){
         $valid = Validator::make($request->all(),[
-            'title'=>['nullable','unique:words','regex:/^[А-Яа-яA-Za-z-\s]+$/u']
+            'title'=>['nullable','unique:words']
         ],[
             'title.required'=>'Поле обязательно для заполнения',
             'title.unique'=>'Поле должно быть уникальным',

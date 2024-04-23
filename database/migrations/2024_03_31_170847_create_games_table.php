@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->text('description');
             $table->boolean('button');
             $table->foreignIdFor(Style::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();

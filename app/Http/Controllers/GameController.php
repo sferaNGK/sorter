@@ -11,7 +11,7 @@ class GameController extends Controller
 {
     public function AddGame(Request $request){
         $valid = Validator::make($request->all(),[
-            'title'=>['required','unique:games','regex:/^[А-Яа-яA-Za-z\s]+$/u']
+            'title'=>['required','unique:games']
         ],[
             'title.required'=>'Поле обязательно для заполнения',
             'title.unique'=>'Поле должно быть уникальным',
@@ -22,6 +22,7 @@ class GameController extends Controller
         }
         $game = new Game();
         $game->title=$request->title;
+        $game->description = $request->description;
         $game->style_id = $request->style;
         $game->button = $request->button;
         $game->save();

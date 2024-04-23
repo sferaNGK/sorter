@@ -22,6 +22,10 @@
                             <input name="title" type="text" class="form-control" id="exampleInputTitle1">
                         </div>
                         <div class="mb-3">
+                            <label for="exampleInputTitle1" class="form-label">Описание игры</label>
+                            <textarea name="description" type="text" class="form-control" id="exampleInputTitle1"></textarea>
+                        </div>
+                        <div class="mb-3">
                             <label for="exampleInputCss1" class="form-label">Выберите стиль</label>
                             <select class="form-control mt-2 mb-2" name="style">
                                 <option v-for="style in styles" :value="style.id">@{{ style.title }}</option>
@@ -61,6 +65,7 @@
               <tr>
                 <th scope="col">id</th>
                 <th scope="col">Название</th>
+                <th scope="col">Описание</th>
                 <th scope="col">Действие</th>
               </tr>
             </thead>
@@ -68,6 +73,7 @@
               <tr v-for="game in games">
                 <th scope="row">@{{ game.id }}</th>
                 <td>@{{ game.title }}</td>
+                <td>@{{ game.description }}</td>
                 <td>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="`#exampleModal_${game.id}`">
                         Редактировать
@@ -86,7 +92,10 @@
                                         <label for="exampleInputTitle1" class="form-label">Назавние Игры</label>
                                         <input name="title" type="text" :value="game.title" class="form-control" id="exampleInputTitle1">
                                     </div>
-
+                                    <div class="mb-3">
+                                        <label for="exampleInputTitle1" class="form-label">Описание игры</label>
+                                        <textarea name="description" type="text" class="form-control" id="exampleInputTitle1"></textarea>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
