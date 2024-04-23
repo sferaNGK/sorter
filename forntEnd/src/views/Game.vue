@@ -1,5 +1,5 @@
 <template>
-    <ModalFirst/>
+    <ModalFirst :description="description"/>
     <ModalEnd :v-bind:modal="modal" :count="count" :length="length" v-bind:children="children" v-if="modal == true"/>
     <div class="main d-flex flex-column align-items-center justify-content-center">
         <div class="d-flex flex-row flex-wrap align-items-center justify-content-center gap-3 col-12">
@@ -29,6 +29,10 @@ export default {
   },
   data() {
     return {
+        // Описание
+
+        description:'',
+
         // Отображающиеся слова
       list1: [],
       list2: [],
@@ -63,12 +67,14 @@ export default {
         two:false,
         three:false,
         four:false,
+
     };
   },
   methods: {
     getGames(id){
       axios.get(`${link}/api/game/${id}`).then(res => {
         this.games = res.data;
+        this.description = this.games[0].game.description
         this.path = this.games[0].game.style_id.path;
         this.cat1 = this.games[0].category.title;
         this.cat2 = this.games[1].category.title;

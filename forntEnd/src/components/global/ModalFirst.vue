@@ -12,7 +12,7 @@
                     </div>
                     <div class="modal-body">
                         <p>
-                            Как вы считаете, какие действия программиста относятся к прошлому, а какие к настоящему?
+                            {{ description }}
                         </p>
                         <ul>
                             <li>Переносите слово/изображение в подходящую категорию</li>
@@ -31,6 +31,11 @@
 </template>
 <script>
 export default {
+    props:{
+        description:{
+            type:String
+        }
+    },
     methods:{
         CloseModal(){
             const diag = document.querySelector(".modal-container");
