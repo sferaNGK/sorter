@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid d-flex align-items-center justify-content-center mt-2" style="height: 100vh;">
-      <div class="d-flex align-items-center justify-content-center flex-column gap-5">
+      <div class="d-flex flex-row align-items-center justify-content-center flex-wrap gap-5">
         <div v-for="game in games">
           <RouterLink :to="{path: '/game/'+game.id}" class="btn btn-primary fs-5 d-flex align-items-center justify-content-center" style="width: 300px; height:120px;">
             {{ game.title }}

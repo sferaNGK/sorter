@@ -14,9 +14,9 @@
               @change="log"
             >
               <template #item="{ element }">
-            <div class="list-group-item col-3 rounded border" :id="`element_${element.id}`" :class="element.img ? 'noBorder' : '', three ? 'lg-min' : ''">
+            <div class="list-group-item col-3 rounded border" :id="`element_${element.id}`" :class="element.img ? 'bord' : '', three ? 'lg-min' : ''">
                     <img v-if="element.img" :src="link + element.img" alt="" class="img-enter">
-                    <p class="w-100 h-100 p-0 m-0" v-else>{{ element.title }}</p>
+                    <p class="w-100 h-100 p-0 m-0 d-flex align-items-center justify-content-center text-center" v-else>{{ element.title }}</p>
                 </div>
               </template>
             </draggable>
@@ -70,13 +70,13 @@ export default {
                      if(this.categories.includes(element)){
                          document.getElementById(`element_${element.id}`).classList.add('right');
                          document.getElementById(`element_${element.id}`).classList.remove('wrong');
-                         document.getElementById(`element_${element.id}`).style.background = 'green';
-                         document.getElementById(`element_${element.id}`).style.color = 'white';
+                         //document.getElementById(`element_${element.id}`).style.borderColor = 'green';
+                        //  document.getElementById(`element_${element.id}`).style.color = 'white';
                      } else{
                          document.getElementById(`element_${element.id}`).classList.add('wrong');
                          document.getElementById(`element_${element.id}`).classList.remove('right');
-                         document.getElementById(`element_${element.id}`).style.background = 'red';
-                         document.getElementById(`element_${element.id}`).style.color = 'white';
+                        //  document.getElementById(`element_${element.id}`).style.borderColor = 'red';
+                        //  document.getElementById(`element_${element.id}`).style.color = 'white';
                      }
                 });
              //    Придумать как передовать пропс через emit
