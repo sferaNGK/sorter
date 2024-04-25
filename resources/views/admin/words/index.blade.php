@@ -44,6 +44,9 @@
             </div>
           </div>
     </div>
+    <div class="container p-5">
+        <input type="text" placeholder="Введите категорию интересующего вас слова/изображения" v-model="searchValue" class="form-control">
+    </div>
     <div class="container mt-5">
         <table class="table">
             <thead>
@@ -56,7 +59,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="word in words">
+              <tr v-for="word in Search">
                 <th scope="row">@{{ word.id }}</th>
                 <td>@{{ word.title }}</td>
                 <td>@{{ word.category.title }}</td>
@@ -115,6 +118,7 @@
                 categories:[],
                 message: '',
                 words:[],
+                searchValue:'',
             }
         },
         methods:{
@@ -161,7 +165,16 @@
             async getWord(){
                 let response_word = await fetch('{{ route('GetWord') }}');
                 this.words = await response_word.json();
-                console.log(this.words);
+            }
+        },
+        computed:{
+            Search(){
+                // console.log(this.words[0].category.title);
+                if(this.searchValue == ''){
+                    return [...this.words];
+                } else{
+                    return [...this.words].filter(words=>words.category.title.toLowerCase().includes(this.searchValue.toLowerCase()));
+                }
             }
         },
         mounted(){
