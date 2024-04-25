@@ -17,7 +17,7 @@
               <template #item="{ element }">
                 <div class="list-group-item-word rounded text-center d-flex align-items-center justify-content-center text-white" style=" background-color: rgb(73, 73, 73);" :id="`element_${element.id}`" :class="element.img ? 'noBorder' : ''">
                     <img v-if="element.img" :src="link + element.img" alt="" class="img">
-                    <p class="w-100 h-100 mt-2 text-center d-flex align-items-center justify-content-center" v-else>{{ element.title }}</p>
+                    <p class="w-100 h-100 text-center" v-else>{{ element.title }}</p>
                 </div>
               </template>
         </draggable>

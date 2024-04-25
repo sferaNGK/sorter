@@ -8,8 +8,8 @@
     flex-wrap: wrap;
     gap: 15px;
     overflow-y: auto;
-    align-items: flex-start;
-justify-content: center;
+    align-content: start;
+    justify-content: center;
 }
 /* Imgaes */
 
@@ -54,19 +54,13 @@ justify-content: center;
     flex-wrap: wrap;
 }
 .list-group-item-word p{
- width: 90% !important;
- height: 100% !important;
- display: flex;
- align-items: center;
- justify-content: center;
-/* margin-top: 10px; */
- 
+
 }
 .list-group-item{
     cursor:grab;
     max-height:min-content !important;
     font-size: 14px;
-    width: 35%;
+    width: 30%;
     height: 20%;
     overflow-y:auto;
     overflow-x: hidden;
@@ -119,9 +113,9 @@ html, body {
     align-items: baseline !important;
 }
 .img-enter{
-    width: 60px;
-    /* height: 80px; */
-    object-fit: cover;
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
 }
 
 .main{

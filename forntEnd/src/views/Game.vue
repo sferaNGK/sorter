@@ -102,20 +102,10 @@ export default {
     setTimeout(() => {
         if(this.categories.length == 2){
             this.two = true;
-            document.querySelector('.first').style.backgroundImage = 'url(/src/assets/images/Left.svg)';
-            document.querySelector('.second').style.backgroundImage = 'url(/src/assets/images/right.svg)';
         } else if(this.categories.length == 3){
-            document.querySelector('.first').style.backgroundImage = 'url(/src/assets/images/Left.svg)';
-            document.querySelector('.second').style.backgroundImage = 'url(/src/assets/images/Right.svg)';
-            document.querySelector('.third').style.backgroundImage = 'url(/src/assets/images/Down.svg)';
             document.querySelector('.third').classList.add('col-10');
-
             this.three = true;
         } else{
-            document.querySelector('.first').style.backgroundImage = 'url(/src/assets/images/Left_up.svg)';
-            document.querySelector('.second').style.backgroundImage = 'url(/src/assets/images/Right_up.svg)';
-            document.querySelector('.third').style.backgroundImage = 'url(/src/assets/images/Left_down.svg)';
-            document.querySelector('.fourth').style.backgroundImage = 'url(/src/assets/images/Right_down.svg)';
             this.four = true;
         }
     }, 50);
