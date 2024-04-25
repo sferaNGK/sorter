@@ -86,7 +86,7 @@
                               <h1 class="modal-title fs-5" id="exampleModalLabel">Изменение категории</h1>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form @submit.prevent="EditGame(game.id)" id="edit_form">
+                            <form @submit.prevent="EditGame(game.id)" :id="`edit_form_${game.id}`">
                                 <div class="modal-body">
                                     <div class="mb-3">
                                         <label for="exampleInputTitle1" class="form-label">Назавние Игры</label>
@@ -94,7 +94,13 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="exampleInputTitle1" class="form-label">Описание игры</label>
-                                        <textarea name="description" type="text" class="form-control" id="exampleInputTitle1"></textarea>
+                                        <textarea name="description" :value="game.description" type="text" class="form-control" id="exampleInputTitle1"></textarea>
+                                    </div>
+                                     <div class="mb-3">
+                                        <label for="exampleInputCss1" class="form-label">Выберите стиль</label>
+                                        <select class="form-control mt-2 mb-2" name="style">
+                                            <option v-for="style in styles" :value="style.id">@{{ style.title }}</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -138,8 +144,9 @@
                 this.getCategory();
             },
             async EditGame(id){
-                let form = document.getElementById('edit_form');
+                let form = document.getElementById(`edit_form_${id}`);
                 let form_data = new FormData(form);
+                console.log(form_data);
                 form_data.append('id',JSON.stringify(id));
                 const response = await fetch('{{route('EditGame')}}',{
                     method: 'post',
@@ -148,7 +155,6 @@
                     },
                     body:form_data
                 });
-                this.ga
                 this.getGames();
             },
             async DeleteGame(id){

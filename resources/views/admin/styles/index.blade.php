@@ -60,7 +60,7 @@
                               <h1 class="modal-title fs-5" id="exampleModalLabel">Изменение стиля</h1>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form @submit.prevent="EditWord(word.id)" id="edit_form">
+                            <form @submit.prevent="EditWord(word.id)" :id="`edit_form_${word.id}`">
                                 <div class="modal-body">
                                     <div class="mb-3">
                                         <label for="exampleInputTitle1" class="form-label">Назавние стиля</label>
@@ -109,7 +109,7 @@
                 this.getWord();
             },
             async EditWord(id){
-                let form = document.getElementById('edit_form');
+                let form = document.getElementById(`edit_form_${id}`);
                 let form_data = new FormData(form);
                 form_data.append('id',JSON.stringify(id));
                 const response = await fetch('{{route('EditStyle')}}',{
@@ -122,7 +122,7 @@
                 this.getWord();
             },
             async DeleteWord(id){
-                const response = await fetch('{{route('DeleteWord')}}',{
+                const response = await fetch('{{route('DeleteStyle')}}',{
                     method: 'post',
                     headers:{
                         'X-CSRF-TOKEN':'{{ csrf_token() }}',

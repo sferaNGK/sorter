@@ -39,6 +39,7 @@ class GameController extends Controller
     public function EditGame(Request $request){
         $game = Game::query()->where('id',$request->id)->first();
         $game->title = $request->title;
+        $game->description = $request->description;
         $game->style_id = $request->style;
         $game->update();
 

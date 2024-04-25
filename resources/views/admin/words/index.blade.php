@@ -73,7 +73,7 @@
                               <h1 class="modal-title fs-5" id="exampleModalLabel">Изменение Слова/Изображения</h1>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form @submit.prevent="EditWord(word.id)" id="edit_form">
+                            <form @submit.prevent="EditWord(word.id)" :id="`edit_form_${word.id}`">
                                 <div class="modal-body">
                                     <div class="mb-3">
                                         <label for="exampleInputTitle1" class="form-label">Назавние</label>
@@ -131,7 +131,7 @@
                 this.getWord();
             },
             async EditWord(id){
-                let form = document.getElementById('edit_form');
+                let form = document.getElementById(`edit_form_${id}`);
                 let form_data = new FormData(form);
                 form_data.append('id',JSON.stringify(id));
                 const response = await fetch('{{route('EditWord')}}',{

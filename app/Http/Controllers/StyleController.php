@@ -36,9 +36,11 @@ class StyleController extends Controller
         $style = Style::query()->where('id',$request->id)->first();
         $style->title = $request->title;
         if($request->file('css')){
-            $style->path = '/storage/'.$request->file('css')->store('/public/style');
-            $style->path = str_replace('public/',"",$style->path);
-            $style->path = str_replace('.txt',".css",$style->path);
+            $origName = $request->css->getClientOriginalName();
+            $path = '/style/';
+            $file = $request->css;
+            Storage::disk('public')->putFileAs($path,$file, $origName);
+            $style->path = '/storage/style/'.$origName;
         }
         $style->update();
         return redirect()->back();
