@@ -90,6 +90,7 @@ export default {
             this.words.push(elem);
         });
     });
+    console.log(this.words);
     this.length = this.words.length;
     this.words.sort(()=> Math.random() - 0.5);
     if(this.games[0].game.button == 'false'){
