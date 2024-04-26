@@ -1,12 +1,6 @@
 .first{
-	background-image: url("http://localhost:5173/src/assets/images/Left_up.svg") !important;
+	background-image: url("http://localhost:5173/src/assets/images/Left.svg") !important;
 }
 .second{
-	background-image: url("http://localhost:5173/src/assets/images/Right_up.svg") !important;
-}
-.third{
-	background-image: url("http://localhost:5173/src/assets/images/Left_down.svg") !important;
-}
-.fourth{
-	background-image: url("http://localhost:5173/src/assets/images/Right_down.svg") !important;
+	background-image: url("http://localhost:5173/src/assets/images/right.svg") !important;
 }
