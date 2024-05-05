@@ -9,6 +9,37 @@ use Illuminate\Support\Facades\Validator;
 
 class GameController extends Controller
 {
+
+    public function AddGameMain(Request $request){
+        $valid = Validator::make($request->all(),[
+            'title'=>['required','unique:games'],
+            'description'=>['required'],
+            'style'=>['required'],
+        ],[
+            'title.required'=>'Поле обязательно для заполнения',
+            'title.unique'=>'Поле должно быть уникальным',
+        ]);
+        if($valid->fails()){
+            return response()->json($valid->errors(),400);
+        }
+        $game = new Game();
+        $game->title = $request->title;
+        $game->description = $request->description;
+        $game->style_id = $request->style;
+        $game->button = $request->game;
+        $game->save();
+        return response()->json("Игра под названием: ' " .$game->title . " ' создана", 200);
+    }
+
+    public function EditGameMain(Request $request){
+        $game = Game::query()->where('id',$request->id)->first();
+        $oldName = $game->title;
+        $game->title = $request->title;
+        $game->update();
+
+        return response()->json("Игра под названием: ' " .$oldName . " ' изменена на : '" . $game->title . "'", 200);
+    }
+
     public function AddGame(Request $request){
         $valid = Validator::make($request->all(),[
             'title'=>['required','unique:games']

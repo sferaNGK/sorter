@@ -3,19 +3,43 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\GameCat;
 use App\Models\Word;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
-    public function AddCategory(Request $request){
+    public function AddGameCategory(Request $request){
         $valid = Validator::make($request->all(),[
-            'title'=>['required','unique:categories']
+            'title'=>['required']
         ],[
             'title.required'=>'Поле обязательно для заполнения',
-            'title.unique'=>'Поле должно быть уникальным',
-            'title.regex'=>'Поле не соответствует правилам',
+        ]);
+        if($valid->fails()){
+            return response()->json($valid->errors(),400);
+        }
+        $category = new Category();
+        $category->title=$request->title;
+        $category->save();
+
+        $gameCat = new GameCat();
+        $gameCat->game_id = $request->id;
+        $gameCat->category_id = $category->id;
+        $gameCat->save();
+        return response()->json("Категория: '" . $request->title . "' добавлена", 200);
+    }
+
+    public function GetCategoriesGame(Request $request){
+        $gameCat = GameCat::with('Game','Category')->where('game_id',$request->id)->get();
+        return response()->json($gameCat);
+    }
+
+    public function AddCategory(Request $request){
+        $valid = Validator::make($request->all(),[
+            'title'=>['required']
+        ],[
+            'title.required'=>'Поле обязательно для заполнения',
         ]);
         if($valid->fails()){
             return response()->json($valid->errors(),400);
@@ -30,7 +54,7 @@ class CategoryController extends Controller
         $category = Category::query()->where('id', $request->id)->first();
         $category->title = $request->title;
         $category->update();
-        return redirect()->back();
+        return response()->json('Категория изменена', 200);
     }
 
     public function DeleteCategory(Request $request){
@@ -39,14 +63,6 @@ class CategoryController extends Controller
         return redirect()->back();
     }
 
-    public function gameCategoryGet(){
-        $category = Category::all()->random(2);
-        $words = [];
-        foreach($category as $cat){
-            array_push($words,Word::with('Category')->where('category_id',$cat->id)->get());
-        }
-        return response()->json($words);
-    }
 
     public function gameCategories(Request $request){
         $words = [];

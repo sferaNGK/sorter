@@ -17,9 +17,9 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('description');
-            $table->boolean('button');
-            $table->foreignIdFor(Style::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->text('description')->nullable();
+            $table->boolean('button')->nullable();
+            $table->foreignIdFor(Style::class)->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

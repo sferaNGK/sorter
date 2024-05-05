@@ -2,12 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use App\Models\Style;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class StyleController extends Controller
 {
+    public function GetStylesGame(Request $request){
+        $styles = Game::with('Style')->where('id',$request->id)->get();
+        return response()->json($styles);
+    }
+
+    public function ChoseGameStyle(Request $request){
+        $game = Game::query()->where('id', $request->id)->first();
+        $game->style_id = $request->style;
+        $game->update();
+        return response()->json('Стиль игры применен', 200);
+    }
+
+    public function AddGameStyle(Request $request){
+        $game = Game::query()->where('id',$request->id)->first();
+        $style = new Style();
+        $style->title=$request->title;
+        if($request->file('css')){
+            // New
+            $origName = $request->css->getClientOriginalName();
+            $path = '/style/';
+            $file = $request->css;
+            Storage::disk('public')->putFileAs($path,$file, $origName);
+            $style->path = '/storage/style/'.$origName;
+        }
+        $style->save();
+
+        $game->style_id = $style->id;
+        $game->update();
+        return response()->json("Стиль добавлен", 200);
+    }
 
     public function AddStyle(Request $request){
         $style = new Style();
@@ -19,14 +50,6 @@ class StyleController extends Controller
             $file = $request->css;
             Storage::disk('public')->putFileAs($path,$file, $origName);
             $style->path = '/storage/style/'.$origName;
-            // $style->path = '/storage/'.$request->css->getClientOriginalName()->store('/public/style');
-            // dd($style->path);
-            // $request->css->move(public_path('uploads'), $style->path);
-
-            // OLD
-            // $style->path = '/storage/'.$request->file('css')->store('/public/style');
-            // $style->path = str_replace('.txt',".css",$style->path);
-            // $style->path = str_replace('public/',"",$style->path);
         }
         $style->save();
         return redirect()->back();

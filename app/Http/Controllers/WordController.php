@@ -2,23 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
+use App\Models\GameCat;
 use App\Models\Word;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class WordController extends Controller
 {
-    public function AddWord(Request $request){
-        $valid = Validator::make($request->all(),[
-            'title'=>['nullable','unique:words']
-        ],[
-            'title.required'=>'Поле обязательно для заполнения',
-            'title.unique'=>'Поле должно быть уникальным',
-            'title.regex'=>'Поле не соответствует правилам',
-        ]);
-        if($valid->fails()){
-            return response()->json($valid->errors(),400);
+    public function GetWordsGame(Request $request){
+        $words = [];
+        $gameCat = GameCat::query()->where('game_id', $request->id)->get();
+        foreach($gameCat as $cat){
+            if(Word::query()->where('category_id', $cat->category_id)->first() != null){
+                array_push($words, Word::with('Category')->where('category_id', $cat->category_id)->get());
+            }
         }
+        $result = [];
+       foreach($words as $wo){
+        foreach($wo as $w){
+            array_push($result, $w);
+        }
+       }
+        return response()->json($result);
+    }
+    public function AddGameWord(Request $request){
+        $word = new Word();
+        $word->title=$request->title;
+        if($request->file('img')){
+            $word->img = '/storage/'.$request->file('img')->store('/public/img');
+            $word->img = str_replace('public/',"",$word->img);
+        }
+        $word->category_id=$request->category;
+        $word->save();
+        return response()->json("Слово(изображение) добавлено", 200);
+    }
+
+    public function AddWord(Request $request){
         $word = new Word();
         $word->title=$request->title;
         if($request->file('img')){
@@ -34,9 +54,12 @@ class WordController extends Controller
         $word = Word::query()->where('id', $request->id)->first();
         $word->title = $request->title;
         $word->category_id = $request->category;
-        $word->img = $request->img;
+        if($request->file('img')){
+            $word->img = '/storage/'.$request->file('img')->store('/public/img');
+            $word->img = str_replace('public/',"",$word->img);
+        }
         $word->update();
-        return redirect()->back();
+        return response()->json("Слово(изображение) изменено", 200);
     }
 
     public function DeleteWord(Request $request){

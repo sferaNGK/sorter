@@ -10,6 +10,15 @@ use App\Models\Word;
 
 class PageController extends Controller
 {
+    public function show_page_game(Request $request){
+        $game = Game::query()->where('id',$request->id)->first();
+        return redirect()->route('show_page_game_id',['game'=>$game]);
+    }
+    public function show_page_game_id(Game $game){
+        return view('admin.games.create',['game'=>$game]);
+    }
+
+
     public function show_admin_page(){
         return view('admin.index');
     }

@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function AuthAdmin(Request $request){
-        $user = User::query()->where('login',$request->login)->where('password',md5($request->password))->first();
+    public function login(Request $request){
+        $user = User::query()->where('login',$request->login)->where('password',$request->password)->first();
         if($user){
             Auth::login($user);
             return redirect()->route('show_admin_page');
