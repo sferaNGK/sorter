@@ -1,5 +1,5 @@
-@extends('admin.index')
-@section('contented')
+@extends('admin.adminLayout.appAdmin')
+@section('content')
 <div class="container mt-5" id="Categories">
     <div class="container d-flex flex-row gap-5">
         <h5>Слова</h5>
@@ -169,7 +169,6 @@
         },
         computed:{
             Search(){
-                // console.log(this.words[0].category.title);
                 if(this.searchValue == ''){
                     return [...this.words];
                 } else{

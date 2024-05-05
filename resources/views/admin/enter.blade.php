@@ -25,7 +25,7 @@
             async AuthAdmin(){
                 let form = document.getElementById('reg_form');
                 let form_data = new FormData(form);
-                const response = await fetch('{{route('AuthAdmin')}}',{
+                const response = await fetch('{{route('login')}}',{
                     method: 'post',
                     headers:{
                         'X-CSRF-TOKEN':'{{ csrf_token() }}',

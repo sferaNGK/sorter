@@ -1,5 +1,5 @@
-@extends('admin.index')
-@section('contented')
+@extends('admin.adminLayout.appAdmin')
+@section('content')
 <div class="container mt-5" id="Categories">
     <div class="container d-flex flex-row gap-5">
         <h5>Стили</h5>
