@@ -1,4 +1,4 @@
-<?php $__env->startSection('contented'); ?>
+<?php $__env->startSection('content'); ?>
 <div class="container mt-5" id="Categories">
     <div class="container d-flex flex-row gap-5">
         <h5>Игры</h5>
@@ -193,4 +193,4 @@
 </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('admin.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\onixc\Downloads\sorter\resources\views/admin/games/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.adminLayout.appAdmin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\onixc\Downloads\sorter\resources\views/admin/games/index.blade.php ENDPATH**/ ?>
