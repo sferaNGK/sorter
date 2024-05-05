@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex align-items-center justify-content-center" :class="adult ? 'blockBtn' : ''" style="position: absolute;
+    <div class="wordblock d-flex align-items-center justify-content-center" :class="adult ? 'blockBtn' : ''" style="position: absolute;
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -10,14 +10,14 @@
               :list="words"
               group="people"
               itemKey="name"
-            style="background-color:#262627;"
+            style="background-color: rgba(38, 38, 38, .2);"
             @change="log"
             >
                <!-- style="max-height:100%" -->
               <template #item="{ element }">
-                <div class="list-group-item-word rounded text-center d-flex align-items-center justify-content-center text-white" style=" background-color: rgb(73, 73, 73);" :id="`element_${element.id}`" :class="element.img ? 'noBorder' : ''">
+                <div class="list-group-item-word rounded text-center d-flex align-items-center justify-content-center text-white" style=" background-color: white;" :id="`element_${element.id}`" :class="element.img ? 'noBorder' : ''">
                     <img v-if="element.img" :src="link + element.img" alt="" class="img">
-                    <p class="w-100 h-100 text-center" v-else>{{ element.title }}</p>
+                    <p class="w-100 h-100 text-center text-black" v-else>{{ element.title }}</p>
                 </div>
               </template>
         </draggable>

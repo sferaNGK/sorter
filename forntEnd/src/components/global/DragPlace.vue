@@ -1,11 +1,11 @@
 <template>
-    <div class="col-5 border">
+    <div class="dragplace col-5 border rounded" style="background-color: rgba(38, 38, 38, .2)">
         <div class="col-12 p-3 d-flex justify-content-start flex-column align-items-center" :class="two ? 'two' : three ? 'three' : four ? 'four' : ''">
-            <div class="border col-6 mt-4" style="background-color: #262626;">
-                <h3 class="text-center text-white">{{ cat }}</h3>
+            <div class="dragplaceCat border col-7 mt-1 d-flex align-items-center justify-content-center" style="background-color: rgb(82, 99, 133); height:auto;">
+                <h3 class="cat text-center text-white">{{ cat }}</h3>
             </div>
             <draggable
-              class="list-group p-2 h-100 container-fluid"
+              class="list-group p-2 h-100 container-fluid mt-5"
               group="people"
               itemKey="name"
               ghost-class="ghost"

@@ -1,8 +1,13 @@
 <template>
-    <ModalFirst :description="description"/>
+    <ModalFirst :titleCat="titleCat" :description="description"/>
     <ModalEnd :v-bind:modal="modal" :count="count" :length="length" v-bind:children="children" v-if="modal == true"/>
     <div class="main d-flex flex-column align-items-center justify-content-center">
-        <div class="d-flex flex-row flex-wrap align-items-center justify-content-center gap-3 col-12">
+        <div class="loading position-absolute d-flex align-items-center justify-content-center" style="height: 100vh !important; width:100%; z-index:5600; background-color:#262626;">
+            <div class="spinner-border text-white" style="width:550px; height:550px; border-width:15px" role="status">
+                <span class="visually-hidden">Загрузка...</span>
+            </div>
+        </div>
+        <div class="DragPlaces d-flex flex-row flex-wrap align-items-center justify-content-center gap-3 col-12">
             <DragPlace v-on:changeValue="changeValue" class="first" :length="length" v-bind:children="children" v-bind:categories="categories[0]" v-bind:list1="list1" v-bind:cat="cat1" :two="two" :three="three" :four="four"></DragPlace>
             <DragPlace v-on:changeValue="changeValue" class="second" :length="length" v-bind:children="children" v-bind:categories="categories[1]" v-if="cat2 != ''" v-bind:list1="list2" v-bind:cat="cat2" :two="two" :three="three" :four="four"></DragPlace>
             <DragPlace v-on:changeValue="changeValue" class="third" :length="length" v-bind:children="children" v-bind:categories="categories[2]" v-if="cat3 != ''" v-bind:list1="list3" v-bind:cat="cat3" :two="two" :three="three" :four="four"></DragPlace>
@@ -68,12 +73,14 @@ export default {
         three:false,
         four:false,
 
+        titleCat:'',
     };
   },
   methods: {
     getGames(id){
       axios.get(`${link}/api/game/${id}`).then(res => {
         this.games = res.data;
+        this.titleCat = this.games[0].game.title;
         this.description = this.games[0].game.description
         this.path = this.games[0].game.style_id.path;
         this.cat1 = this.games[0].category.title;
@@ -90,7 +97,6 @@ export default {
             this.words.push(elem);
         });
     });
-    console.log(this.words);
     this.length = this.words.length;
     this.words.sort(()=> Math.random() - 0.5);
     if(this.games[0].game.button == 'false'){
@@ -128,13 +134,16 @@ export default {
        this.count = value;
        if(this.words.length == 0){
             this.modal = true;
+            this.arrayStyle = [];
         }
     }
   },
   mounted() {
     this.CreateCss(this.$route.params.id);
     this.getGames(this.$route.params.id);
-
+    setTimeout(() => {
+        document.querySelector(".loading").classList.add('closeLoading');
+    }, 500);
   },
 };
 </script>
