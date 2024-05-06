@@ -10,6 +10,7 @@
               :list="words"
               group="people"
               itemKey="name"
+              :move="checkMove"
             style="background-color: rgba(38, 38, 38, .2);"
             @change="log"
             >
@@ -31,6 +32,7 @@ export default {
      data(){
       return{
         link:'',
+        out:false,
       }
     },
     components: {
@@ -52,7 +54,8 @@ export default {
                     let word = document.getElementById(`element_${this.words[i].id}`);
                     word.classList.add('d-none');
                 }
-           }
+            }
+            document.querySelector('.list-group-word').classList.remove('d-none');
         },
         loading(){
             for(let i = 0; i < this.words.length; i++){
@@ -61,6 +64,11 @@ export default {
                     word.classList.add('d-none');
                 }
            }
+        },
+        checkMove: function(event){
+            if(event){
+                document.querySelector('.list-group-word').classList.add('d-none');
+            }
         }
     },
 mounted(){

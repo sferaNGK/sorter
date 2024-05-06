@@ -110,8 +110,11 @@ export default {
         if(this.categories.length == 2){
             this.two = true;
         } else if(this.categories.length == 3){
-            document.querySelector('.third').classList.add('threeBlocks');
+            let block = document.querySelector('.third');
+            block.classList.add('threeBlocks');
             document.querySelector('.DragPlaces').classList.add('addMr');
+            block.insertAdjacentElement("beforeEnd",block.firstChild.firstChild);
+            block.lastChild.classList.add("borderForThree");
             this.three = true;
         } else{
             this.four = true;
@@ -150,7 +153,7 @@ export default {
     setTimeout(() => {
       this.close();
     }, 500);
-    
+
   },
 };
 </script>

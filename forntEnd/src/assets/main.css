@@ -7,10 +7,16 @@
     scrollbar-color: rgb(82, 99, 133) transparent;
     font-family: "Montserrat";
   }
+  .borderForThree{
+    border-top: 1px solid white;
+    border-radius: 0px 0px 7px 7px !important;
+  }
 body{
     overflow: hidden;
 }
-
+.col-6{
+    width: 48% !important;
+}
 .addMr{
     margin-top: 10px;
 }
@@ -74,13 +80,14 @@ body{
 .list-group-item-word{
     cursor:grab;
     width: auto;
+    width: 100% !important;
     padding: 5px;
     /* font-size: 14px; */
     /* height: 10px !important; */
     flex-wrap: wrap;
 }
 .threeBlocks{
-    width:85%;
+    width:97% !important;
 }
 .list-group-item-word p{
     font-size: medium;
@@ -133,7 +140,7 @@ html, body {
     justify-content: center;
 }
 .bord{
-    height: 100px !important;
+    width: 30% !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -143,13 +150,14 @@ html, body {
     height: auto !important;
     object-fit: contain;
 }
+
 .blockBtn{
     display: flex;
     align-items: baseline !important;
 }
 .img-enter{
-    width: 80%;
-    height: 80%;
+    width: 6rem;
+    height: 100%;
     object-fit: contain;
 }
 
