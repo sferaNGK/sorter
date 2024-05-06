@@ -14,7 +14,7 @@
             <DragPlace v-on:changeValue="changeValue" class="fourth" :length="length" v-bind:children="children" v-bind:categories="categories[3]" v-if="cat4 != ''" v-bind:list1="list4" v-bind:cat="cat4" :two="two" :three="three" :four="four"></DragPlace>
         </div>
         <DragWord v-if="words.length > 0" v-bind:words="words" v-bind:adult="adult"/>
-            <div v-if="adult" class="container-fluid d-flex justify-content-center mt-5">
+            <div v-if="adult" class="container-fluid d-flex justify-content-center mt-1">
                 <CheckButt v-if="adult" v-on:changeValue="changeValue" v-bind:list1="list1" v-bind:list2="list2" v-bind:list3="list3" v-bind:list4="list4" v-bind:categories="categories"/>
             </div>
     </div>
@@ -110,7 +110,8 @@ export default {
         if(this.categories.length == 2){
             this.two = true;
         } else if(this.categories.length == 3){
-            document.querySelector('.third').classList.add('col-10');
+            document.querySelector('.third').classList.add('threeBlocks');
+            document.querySelector('.DragPlaces').classList.add('addMr');
             this.three = true;
         } else{
             this.four = true;
@@ -128,7 +129,10 @@ export default {
             css.rel = "stylesheet";
             css.media = "screen,print";
             document.head.appendChild(css)
-        });
+            setTimeout(() => {
+              document.querySelector(".loading").classList.add('closeLoading');
+            }, 3000);
+          });
     },
     changeValue(value){
        this.count = value;
@@ -136,14 +140,17 @@ export default {
             this.modal = true;
             this.arrayStyle = [];
         }
+    },
+    close(){
     }
   },
   mounted() {
     this.CreateCss(this.$route.params.id);
     this.getGames(this.$route.params.id);
     setTimeout(() => {
-        document.querySelector(".loading").classList.add('closeLoading');
+      this.close();
     }, 500);
+    
   },
 };
 </script>

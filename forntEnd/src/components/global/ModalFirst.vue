@@ -8,7 +8,7 @@
                 </div>
                 <div class="modal-content">
                     <div class="modal-body">
-                        <h5 class="modal-title modalText text-center mb-4 fs-4" style="font-weight: 900; font-size: 2.5rem;">
+                        <h5 class="modal-title modalText text-center mb-4 fs-4" style="font-weight: 900; font-size: 26px !important;">
                             Инструкция игры
                         </h5>
                         <p class="modalText">

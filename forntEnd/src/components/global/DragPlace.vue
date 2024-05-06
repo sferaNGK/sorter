@@ -1,9 +1,7 @@
 <template>
     <div class="dragplace col-5 border rounded" style="background-color: rgba(38, 38, 38, .2)">
-        <div class="col-12 p-3 d-flex justify-content-start flex-column align-items-center" :class="two ? 'two' : three ? 'three' : four ? 'four' : ''">
-            <div class="dragplaceCat border col-7 mt-1 d-flex align-items-center justify-content-center" style="background-color: rgb(82, 99, 133); height:auto;">
-                <h3 class="cat text-center text-white">{{ cat }}</h3>
-            </div>
+        <div class="col-12 p-0 m-0 d-flex justify-content-start flex-column align-items-center" :class="two ? 'two' : three ? 'three' : four ? 'four' : ''">
+            
             <draggable
               class="list-group p-2 h-100 container-fluid mt-5"
               group="people"
@@ -14,12 +12,15 @@
               @change="log"
             >
               <template #item="{ element }">
-            <div class="list-group-item col-3 rounded border" :id="`element_${element.id}`" :class="element.img ? 'bord' : '', three ? 'lg-min' : ''">
+            <div class="list-group-item col-12 rounded border" :id="`element_${element.id}`" :class="element.img ? 'bord' : '', three ? 'lg-min' : ''">
                     <img v-if="element.img" :src="link + element.img" alt="" class="img-enter">
                     <p class="w-100 h-100 p-0 m-0 d-flex align-items-center justify-content-center text-center" v-else>{{ element.title }}</p>
                 </div>
               </template>
             </draggable>
+            <div v-if="three" class="dragplaceCat rounded-top col-12 d-flex align-items-center justify-content-center" style="background-color: rgb(82, 99, 133); height:auto;">
+                <h3 class="cat mt-1 d-flex align-items-center justify-content-center text-center text-white">{{ cat }}</h3>
+            </div>
         </div>
     </div>
 </template>
@@ -34,6 +35,7 @@ export default {
     data(){
       return{
         link:'',
+        ctLenght:0,
       }
     },
     props:{

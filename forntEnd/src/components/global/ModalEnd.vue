@@ -20,13 +20,13 @@
                     </div>
                     <div class="modal-body">
                         <p class="modalText" v-if="length == count && children === false || children == true">
-                          Поздравляем, вы распределили всё правильно!
+                          Вы распределили всё правильно!
                         </p>
                         <p class="modalText" v-else-if="children === true">
-                          Вы верно распределили {{ count }} элемента(ов)
+                          Вы верно распределили {{ count }} из {{length}} элемента(ов)
                         </p>
                         <p class="modalText" v-else>
-                          Вы верно распределили {{ count }} элемента(ов)
+                          Вы верно распределили {{ count }} из {{length}} элемента(ов)
                         </p>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
