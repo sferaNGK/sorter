@@ -5,7 +5,8 @@
 	background-color: #F9EBE8 !important;
 }
 .cat{
-	color:black !important;
+	color:#484e75 !important;
+font-weight:700;
 }
 .modalText{
 	color:#3C5786 !important;
@@ -33,20 +34,10 @@
 	background-color: #96A1EE;
 	color: #252B86 !important;
 }
-.btnModal:hover{
-	transition: 0.5s;
-	background-color: #252B86;
-	color: #96A1EE !important;
-}
 .checkBtn{
 	font-size: 1.6rem;
     	font-weight: 900;
 	border:4px solid white;
 	background-color: #96A1EE;
 	color: #252B86 !important;
-}
-.checkBtn:hover{
-	transition: 0.5s;
-	background-color: #252B86;
-	color: #96A1EE !important;
 }
