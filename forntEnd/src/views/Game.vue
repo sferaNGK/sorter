@@ -116,6 +116,8 @@ export default {
             block.insertAdjacentElement("beforeEnd",block.firstChild.firstChild);
             block.lastChild.classList.add("borderForThree");
             this.three = true;
+            block.firstChild.firstChild.classList.add("justif");
+            // console.log(block.firstChild.firstChild)
         } else{
             this.four = true;
         }

@@ -80,8 +80,8 @@ body{
 .list-group-item-word{
     cursor:grab;
     width: auto;
-    width: 100% !important;
-    padding: 5px;
+    /* width: 100% !important; */
+    padding: 15px;
     /* font-size: 14px; */
     /* height: 10px !important; */
     flex-wrap: wrap;
@@ -89,15 +89,23 @@ body{
 .threeBlocks{
     width:97% !important;
 }
+.justif{
+    justify-content: flex-start;
+}
 .list-group-item-word p{
-    font-size: medium;
+    font-size: 15px;
+    margin-left: -8%;
+}
+.wrd{
+    width: auto !important;
+    height: 100% !important;
 }
 .list-group-item{
     cursor:grab;
-    /* max-height:min-content !important; */
+    /* height:100px !important; */
     /* font-size: 14px; */
     font-size:medium;
-    width: 35%;
+    /* width: 35%; */
     display: flex;
     flex-wrap: wrap;
     height: auto;
@@ -118,7 +126,8 @@ body{
 
 
 .sortable-choosen{
-    height: 20px !important;
+    /* width: auto !important; */
+    height: 507px !important;
 }
 .ghost{
     opacity: 0;
@@ -140,7 +149,7 @@ html, body {
     justify-content: center;
 }
 .bord{
-    width: 30% !important;
+    width: auto !important;
     display: flex;
     align-items: center;
     justify-content: center;

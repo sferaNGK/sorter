@@ -1,5 +1,5 @@
 <template>
-        <button @touchend="CheckResult" class="checkBtn w-25" style="height:80px; font-size:20px;">Проверить</button>
+        <button @touchend="CheckResult" class="checkBtn w-25" style="height:80px; font-size:32px;">Проверить</button>
 </template>
 <script>
 export default {

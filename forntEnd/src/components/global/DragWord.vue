@@ -4,13 +4,12 @@
     margin-right: auto;
     left: 0;
     right: 0;
-    text-align: center; z-index:500; width:200px; height:200px;">
+    text-align: center; z-index:500; width:210px; height:auto; margin-top: -8%;">
             <draggable
               class="list-group-word border p-2 w-100"
               :list="words"
               group="people"
               itemKey="name"
-              :move="checkMove"
             style="background-color: rgba(38, 38, 38, .2);"
             @change="log"
             >
@@ -55,7 +54,7 @@ export default {
                     word.classList.add('d-none');
                 }
             }
-            document.querySelector('.list-group-word').classList.remove('d-none');
+            // document.querySelector('.list-group-word').classList.remove("wrd");
         },
         loading(){
             for(let i = 0; i < this.words.length; i++){
@@ -65,11 +64,6 @@ export default {
                 }
            }
         },
-        checkMove: function(event){
-            if(event){
-                document.querySelector('.list-group-word').classList.add('d-none');
-            }
-        }
     },
 mounted(){
     this.loading();
