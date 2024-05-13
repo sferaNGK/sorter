@@ -14,7 +14,7 @@
               @change="log"
             >
               <template #item="{ element }">
-            <div class="list-group-item col-12 rounded border" :id="`element_${element.id}`" :class="element.img ? 'bord' : '', three ? 'lg-min' : ''">
+            <div class="list-group-item lgi col-12 rounded border" :id="`element_${element.id}`" :class="element.img ? 'bord' : '', three ? 'lg-min' : ''">
                     <img v-if="element.img" :src="link + element.img" alt="" class="img-enter">
                     <p class="w-100 h-100 p-0 m-0 d-flex align-items-center justify-content-center text-center" v-else>{{ element.title }}</p>
                 </div>

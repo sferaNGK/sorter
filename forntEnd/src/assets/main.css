@@ -80,7 +80,7 @@ body{
 .list-group-item-word{
     cursor:grab;
     width: auto;
-    /* width: 100% !important; */
+    width: 100% !important;
     padding: 15px;
     /* font-size: 14px; */
     /* height: 10px !important; */
@@ -117,7 +117,6 @@ body{
 }
 
 .lg-min{
-    /* width: 180px; */
     width: auto;
     height: 100%;
     font-size: 12px;
@@ -125,12 +124,12 @@ body{
 }
 
 
-.sortable-choosen{
-    /* width: auto !important; */
-    height: 507px !important;
+.sortable-chosen{
+    opacity: 1 !important;
+
 }
 .ghost{
-    opacity: 0;
+    opacity: 0 !important;
 }
 
 
@@ -149,7 +148,7 @@ html, body {
     justify-content: center;
 }
 .bord{
-    width: auto !important;
+    width: 15rem !important;
     display: flex;
     align-items: center;
     justify-content: center;
