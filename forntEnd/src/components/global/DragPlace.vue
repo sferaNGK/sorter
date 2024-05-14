@@ -67,8 +67,7 @@ export default {
     },
     methods:{
         log(event){
-            
-            if(event.remove){
+            if(event.removed){
                 document.querySelector(".list-group-word").classList.remove("blockWord")
             }
             
