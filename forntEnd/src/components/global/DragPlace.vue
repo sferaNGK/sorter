@@ -12,6 +12,7 @@
               :empty-insert-threshhold="1500"
               :list="list1"
               @change="log"
+              @move="Moving"
             >
               <template #item="{ element }">
             <div class="list-group-item lgi col-12 rounded border" :id="`element_${element.id}`" :class="element.img ? 'bord' : '', three ? 'lg-min' : ''">
@@ -66,6 +67,10 @@ export default {
     },
     methods:{
         log(event){
+            console.log(event.removed);
+            
+                document.querySelector(".list-group-word").classList.remove("d-none")
+            
             if(this.children){
                 this.list1.forEach(element => {
                      if(this.categories.includes(element)){
@@ -87,6 +92,12 @@ export default {
                 }
             }
         },
+        Moving(event){
+            console.log(event);
+        
+                document.querySelector(".list-group-word").classList.add("d-none");
+        
+        }
 
     },
     computed:{
