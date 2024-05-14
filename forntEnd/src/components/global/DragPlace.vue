@@ -67,9 +67,9 @@ export default {
     },
     methods:{
         log(event){
-            console.log(event.removed);
             
-                document.querySelector(".list-group-word").classList.remove("d-none")
+            
+                document.querySelector(".list-group-word").classList.remove("blockWord")
             
             if(this.children){
                 this.list1.forEach(element => {
@@ -93,9 +93,9 @@ export default {
             }
         },
         Moving(event){
-            console.log(event);
+            console.log(1);
         
-                document.querySelector(".list-group-word").classList.add("d-none");
+                document.querySelector(".list-group-word").classList.add("blockWord");
         
         }
 
