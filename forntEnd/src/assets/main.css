@@ -81,6 +81,10 @@ body{
     background-color: transparent !important;
     pointer-events: none !important;
 }
+.blockWord{
+    pointer-events: none;
+    display: none; 
+}
 .list-group-item-word{
     cursor:grab;
     width: auto;
