@@ -68,8 +68,9 @@ export default {
     methods:{
         log(event){
             
-            
+            if(event.remove){
                 document.querySelector(".list-group-word").classList.remove("blockWord")
+            }
             
             if(this.children){
                 this.list1.forEach(element => {
