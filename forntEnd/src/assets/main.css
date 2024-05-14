@@ -67,20 +67,25 @@ body{
     height: 40vh;
 }
 
-
 .list-group-word{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    background-color: rgba(38, 38, 38, .2);
     align-items: center;
     gap: 15px;
     flex-wrap: wrap;
 }
-
+.blockingList{
+    border: none !important;
+    background-color: transparent !important;
+    pointer-events: none !important;
+}
 .list-group-item-word{
     cursor:grab;
     width: auto;
-    width: 100% !important;
+    background-color: white;
+    /* width: 100% !important; */
     padding: 15px;
     /* font-size: 14px; */
     /* height: 10px !important; */
@@ -126,6 +131,7 @@ body{
 
 .sortable-chosen{
     opacity: 1 !important;
+    /* height: 507px !important; */
 
 }
 .ghost{
@@ -148,7 +154,7 @@ html, body {
     justify-content: center;
 }
 .bord{
-    width: 15rem !important;
+    width: auto !important;
     display: flex;
     align-items: center;
     justify-content: center;
