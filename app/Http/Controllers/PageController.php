@@ -43,6 +43,10 @@ class PageController extends Controller
         return view('admin.games.index');
     }
 
+    public function show_adminregFir_page(){
+        return view('admin.register');
+    }
+
     public function show_game_page(Request $request){
         $game = Game::query()->where('id',$request->id)->first();
         return redirect()->route('show_game',['game'=>$game]);

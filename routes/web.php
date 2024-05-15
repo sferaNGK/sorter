@@ -15,8 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/admin/reg', [PageController::class, 'show_adminreg_page'])->name('show_adminreg_page');
-Route::post('/admin/reg',[UserController::class, 'login'])->name('login');
+Route::get('/admin/reg', [PageController::class, 'show_adminregFir_page'])->name('show_adminregFir_page');
+Route::post('/admin/register',[UserController::class, 'register'])->name('register');
+
+Route::get('/admin/login', [PageController::class, 'show_adminreg_page'])->name('show_adminreg_page');
+Route::post('/admin/login',[UserController::class, 'login'])->name('login');
 Route::group(['middleware'=>'auth'], function(){
      // Admin
      Route::get('/admin', [PageController::class, 'show_admin_page'])->name('show_admin_page');
