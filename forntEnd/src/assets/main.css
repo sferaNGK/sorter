@@ -83,7 +83,7 @@ body{
 }
 .blockWord{
     pointer-events: none;
-    display: none; 
+    display: none;
 }
 .list-group-item-word{
     cursor:grab;
@@ -159,6 +159,7 @@ html, body {
 }
 .bord{
     width: auto !important;
+    height: auto !important;
     display: flex;
     align-items: center;
     justify-content: center;

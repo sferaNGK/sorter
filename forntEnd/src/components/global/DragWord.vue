@@ -48,7 +48,7 @@ export default {
     },
     methods:{
         log(event){
-            if(event.removed){
+            if(event){
                 document.querySelector('.list-group-word').classList.remove('blockingList');
             }
            for(let i = 0; i < this.words.length; i++){
