@@ -31,7 +31,7 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <router-link to="/" class="w-100 text-center">
-                            <button class="btn btnModal" style="font-size:20px">Вернутся на главную</button>
+                            <button class="btn btnModal" style="font-size:20px; width: 75% !important;">Вернуться на главную</button>
                         </router-link>
                     </div>
                 </div>

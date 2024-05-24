@@ -1,7 +1,7 @@
 <template>
     <ModalFirst :titleCat="titleCat" :description="description"/>
     <ModalEnd :v-bind:modal="modal" :count="count" :length="length" v-bind:children="children" v-if="modal == true"/>
-    <div class="main d-flex flex-column align-items-center justify-content-center">
+    <div class="main d-flex flex-column align-items-center justify-content-center" style="background-size: cover;">
         <div class="loading position-absolute d-flex align-items-center justify-content-center" style="height: 100vh !important; width:100%; z-index:5600; background-color:#262626;">
             <div class="spinner-border text-white" style="width:550px; height:550px; border-width:15px" role="status">
                 <span class="visually-hidden">Загрузка...</span>
@@ -17,6 +17,7 @@
             <div v-if="adult" class="container-fluid d-flex justify-content-center mt-1">
                 <CheckButt v-if="adult" v-on:changeValue="changeValue" v-bind:list1="list1" v-bind:list2="list2" v-bind:list3="list3" v-bind:list4="list4" v-bind:categories="categories"/>
             </div>
+
     </div>
 </template>
 <script>
@@ -85,6 +86,7 @@ export default {
         this.path = this.games[0].game.style_id.path;
         this.cat1 = this.games[0].category.title;
         this.cat2 = this.games[1].category.title;
+        console.log(this.games);
         if(this.games.length == 3){ this.cat3 = this.games[2].category.title}
         if(this.games.length == 4){ this.cat3 = this.games[2].category.title;this.cat4 = this.games[3].category.title}
 
@@ -99,6 +101,7 @@ export default {
     });
     this.length = this.words.length;
     this.words.sort(()=> Math.random() - 0.5);
+  
     if(this.games[0].game.button == 'false'){
         this.children = true;
         this.adult = false;
@@ -106,6 +109,7 @@ export default {
         this.children = false;
         this.adult = true;
     }
+    
     setTimeout(() => {
         if(this.categories.length == 2){
             this.two = true;
@@ -159,3 +163,5 @@ export default {
   },
 };
 </script>
+<style>
+</style>
